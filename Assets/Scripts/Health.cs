@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float invincibilityTime = 0f;
     [SerializeField] private AbilityHandler abilityHandler;
     [SerializeField] private Controller controller;
+    [SerializeField] private Slider healthBar;
 
     private int currentHealth;
     private bool alive = true;
@@ -62,6 +64,7 @@ public class Health : MonoBehaviour
             currentHitStun = Mathf.Max(currentHitStun, hitStun);
             damageEvent.Invoke();
         }
+        healthBar.value = currentHealth / maxHealth;
     }
     
     public bool IsDead()

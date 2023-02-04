@@ -5,7 +5,6 @@ using UnityEngine;
 public class GuardEnemy : Enemy
 {
     [SerializeField] private float maxDistanceForAttack = 1;
-    private bool tryAttacking = false;
     private bool nextAttackisHeavy = false;
     public override void Start()
     {
