@@ -4,18 +4,37 @@ using UnityEngine;
 
 public class AbilityHandler : MonoBehaviour
 {
+    public struct Cooldown
+    {
+        public float lenght{get; private set;}
+        public float startTime;
+        public bool finished{get{return Time.time >= startTime + lenght;}}
+        public void Start(float lenght)
+        {
+            this.lenght = lenght;
+            startTime = Time.time;
+        }
+    }
+
     [SerializeField] private List<Attack> attacks;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Health health;
+    private Cooldown[] cooldowns;
     private Coroutine attackRoutine;
     private Attack currentAttack;
     private int currentAttackIndex;
     private bool blocking = false;
+
+    void Start()
+    {
+        cooldowns = new Cooldown[attacks.Count];
+    }
+
     public void TryUseAttack(int attackIndex)
     {
         if (blocking) return;
         if (health && health.Stunned()) return;
-        Debug.Log(attackRoutine == null);
+        if (!cooldowns[attackIndex].finished) {Debug.Log("OnCooldown"); return;}
         if (attackRoutine != null && attackIndex == currentAttackIndex) {
             if (currentAttack.nextAttack)
                 currentAttack.useNextAttack = true;
@@ -24,9 +43,11 @@ public class AbilityHandler : MonoBehaviour
         if (currentAttack && currentAttack.useNextAttack)
         {
             UseAttack(currentAttack.nextAttack);
+            cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
             return;
         }
         UseAttack(attacks[attackIndex]);
+        cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
         currentAttackIndex = attackIndex;
     }
 
@@ -35,6 +56,7 @@ public class AbilityHandler : MonoBehaviour
         currentAttack = attack;
         attackRoutine = StartCoroutine(attack.AttackRoutine(enemyLayer));
         attack.attackEndEvent += () => attackRoutine = null;
+
     }
 
     public void Block(bool enabled = true)
@@ -87,3 +109,5 @@ public class AbilityHandler : MonoBehaviour
         blocking = false;
     }
 }
+
+
