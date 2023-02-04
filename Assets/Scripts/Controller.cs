@@ -6,6 +6,8 @@ public class Controller : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D bounds;
     [SerializeField] private AnimationCurve knockbackCurve;
+    [SerializeField] private Health health;
+    public float maxY = 1;
     private bool facingRight = true;
     public float xSpeed = 2;
     public float ySpeed = 1;
@@ -18,6 +20,7 @@ public class Controller : MonoBehaviour
     }
     public void Move(Vector2 moveDirection)
     {
+        if (health.Stunned()) return;
         if (moveDirection.x < 0) facingRight = false;
         else if (moveDirection.x > 0) facingRight = true;
         Vector3 previousPosition = transform.position;
@@ -30,7 +33,7 @@ public class Controller : MonoBehaviour
         {
             previousPosition = transform.position;
             transform.Translate(moveDirection.y * ySpeed * Time.deltaTime * (Vector3.up + Vector3.forward / Mathf.Tan(Global.depthSlope / 180 * Mathf.PI)));
-            if (renderer.bounds.max.y > bounds.bounds.max.y || renderer.bounds.min.y < bounds.bounds.min.y)
+            if (renderer.bounds.max.y > bounds.bounds.max.y || renderer.bounds.min.y < bounds.bounds.min.y || renderer.bounds.min.y > maxY)
             {
                 transform.position = previousPosition;
             }
