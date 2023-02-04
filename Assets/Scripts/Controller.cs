@@ -8,7 +8,6 @@ public class Controller : MonoBehaviour
     private bool facingRight = true;
     public float xSpeed = 2;
     public float ySpeed = 1;
-    public float depthSlope = 45;
     private new Renderer renderer;
 
     private void Start()
@@ -25,10 +24,10 @@ public class Controller : MonoBehaviour
         {
             transform.position = previousPosition;
         }
-        if (depthSlope % 180 != 0)
+        if (Global.depthSlope % 180 != 0)
         {
             previousPosition = transform.position;
-            transform.Translate(moveDirection.y * ySpeed * Time.deltaTime * (Vector3.up + Vector3.forward / Mathf.Tan(depthSlope / 180 * Mathf.PI)));
+            transform.Translate(moveDirection.y * ySpeed * Time.deltaTime * (Vector3.up + Vector3.forward / Mathf.Tan(Global.depthSlope / 180 * Mathf.PI)));
             if (renderer.bounds.max.y > bounds.bounds.max.y || renderer.bounds.min.y < bounds.bounds.min.y)
             {
                 transform.position = previousPosition;

@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Tooltip("How reactive the camera is. If 0, the camera won't move. If 1, it will always move at the same speed as the player")]
-    [Range(0, 1)]
-    public float rigidity = 0.5f;
-    [Tooltip("The camera will move so that the player stays within the bounds (In viewport space)")]
-    public Bounds bounds;
-    public Vector3 scrollDirection = Vector3.right;
+    [Tooltip("The camera will move so that the player stays within those vales in x (In viewport space)")]
+    public Vector2 minMax = Vector2.up;
     private bool followPlayer;
     private PlayerController player;
     private new Camera camera;
@@ -23,7 +19,10 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowPlayer();
+        if(followPlayer)
+        {
+            FollowPlayer();
+        }
     }
 
     public void ChangeMode(bool followPlayer)
@@ -33,9 +32,16 @@ public class CameraController : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Vector3 delta = Vector3.Project(player.transform.position - transform.position, scrollDirection);
-        transform.Translate(delta * rigidity);
-
-        //if(player.transform.position.x < )
+        float deltaMin = player.transform.position.x - camera.ViewportToWorldPoint(minMax.x * Vector3.right).x;
+        if(deltaMin < 0)
+        {
+            transform.Translate(deltaMin * Vector3.right, Space.World);
+        }
+        float deltaMax = player.transform.position.x - camera.ViewportToWorldPoint(minMax.y * Vector3.right).x;
+        if(deltaMax > 0)
+        {
+            transform.Translate(deltaMax * Vector3.right, Space.World);
+        }
     }
+
 }

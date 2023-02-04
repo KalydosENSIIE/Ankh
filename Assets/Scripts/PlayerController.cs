@@ -10,15 +10,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection;
     private Controller controller;
 
-<<<<<<< HEAD
     void Awake()
     {
         Instance = this;
     }
 
     // Start is called before the first frame update
-=======
->>>>>>> 05113bdb43c2d0e35ef2b3f8e89e4ffad1a96ef8
     void Start()
     {
         controller = GetComponent<Controller>();
