@@ -379,10 +379,13 @@ MonoBehaviour:
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
-  invincibilityTime: 0
+  healEvent:
+    m_PersistentCalls:
+      m_Calls: []
   abilityHandler: {fileID: 298527835}
   controller: {fileID: 298527834}
   healthBar: {fileID: 0}
+  flickering: {fileID: 0}
 --- !u!1 &306237680
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +949,18 @@ PrefabInstance:
     - target: {fileID: 3051302282540103998, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958150945238651688, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 3564563593399287567, guid: ab29be9b6cc5d52489131a172884a573, type: 3}
+    - target: {fileID: 5940049171484508129, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.974
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940049171484508129, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.332
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
