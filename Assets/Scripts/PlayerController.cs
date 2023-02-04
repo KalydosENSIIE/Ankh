@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private Vector2 moveDirection;
     private Controller controller;
+    private AbilityHandler abilityHandler;
 
     void Awake()
     {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<Controller>();
         playerInput = GetComponent<PlayerInput>();
+        abilityHandler = GetComponent<AbilityHandler>();
     }
 
     void Update()
@@ -30,7 +32,27 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue value)
     {
         moveDirection = value.Get<Vector2>();
-        
+    }
+
+    private void OnLightAttack()
+    {
+        abilityHandler.TryUseAttack(0);
+    }
+    private void OnHeavyAttack()
+    {
+        abilityHandler.TryUseAttack(1);
+    }
+    private void OnRangedAttack()
+    {
+        abilityHandler.TryUseAttack(2);
+    }
+    private void OnAreaAttack()
+    {
+        abilityHandler.TryUseAttack(3);
+    }
+    private void OnBlock(InputValue value)
+    {
+        abilityHandler.Block(value.isPressed);
     }
 
 }

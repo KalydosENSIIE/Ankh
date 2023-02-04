@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class AbilityHandler : MonoBehaviour
 {
-    [SerializeField] private List<AttackScriptableObject> attacks;
+    [SerializeField] private List<Attack> attacks;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Health health;
     private Coroutine attackRoutine;
-    private AttackScriptableObject nextAttack;
-    private bool useNextAttack;
+    private Attack currentAttack;
+    private int currentAttackIndex;
     private bool blocking = false;
-    public void UseAttack(int attackIndex)
+    public void TryUseAttack(int attackIndex)
     {
         if (blocking) return;
         if (health && health.Stunned()) return;
-        if (attackRoutine != null) {
-            if (nextAttack)
-                useNextAttack = true;
+        Debug.Log(attackRoutine == null);
+        if (attackRoutine != null && attackIndex == currentAttackIndex) {
+            if (currentAttack.nextAttack)
+                currentAttack.useNextAttack = true;
             return;
         }
-        if (useNextAttack)
+        if (currentAttack && currentAttack.useNextAttack)
         {
-            useNextAttack = false;
-            StartCoroutine(AttackRoutine(nextAttack));
+            UseAttack(currentAttack.nextAttack);
+            return;
         }
-        attackRoutine = StartCoroutine(AttackRoutine(attacks[attackIndex]));
+        UseAttack(attacks[attackIndex]);
+        currentAttackIndex = attackIndex;
+    }
+
+    private void UseAttack(Attack attack)
+    {
+        currentAttack = attack;
+        attackRoutine = StartCoroutine(attack.AttackRoutine(enemyLayer));
+        attack.attackEndEvent += () => attackRoutine = null;
     }
 
     public void Block(bool enabled = true)
@@ -40,7 +49,7 @@ public class AbilityHandler : MonoBehaviour
         return blocking;
     }
 
-    private IEnumerator AttackRoutine(AttackScriptableObject attack) 
+    /* private IEnumerator AttackRoutine(AttackScriptableObject attack) 
     {
         nextAttack = attack.nextAttack;
         yield return new WaitForSeconds(attack.startTime);
@@ -68,13 +77,13 @@ public class AbilityHandler : MonoBehaviour
         }
         if (!useNextAttack)
             yield return new WaitForSeconds(attack.endLag);
-    }
+    } */
 
     public void CancelAction()
     {
         if (attackRoutine != null) StopCoroutine(attackRoutine);
         attackRoutine = null;
-        useNextAttack = false;
+        currentAttack.useNextAttack = false;
         blocking = false;
     }
 }

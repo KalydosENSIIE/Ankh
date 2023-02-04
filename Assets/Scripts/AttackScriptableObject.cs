@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+[System.Serializable]
 public class Hitbox
 {
     public Transform center;
@@ -22,6 +22,4 @@ public class AttackScriptableObject : ScriptableObject
     public float knockback = 1;
     public float knockbackDuration = 0.5f;
     public float blockedKnockback = 0.1f;
-    public List<Hitbox> hitboxes;
-    public AttackScriptableObject nextAttack;
 }

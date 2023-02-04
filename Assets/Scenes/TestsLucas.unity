@@ -232,9 +232,12 @@ GameObject:
   - component: {fileID: 298527832}
   - component: {fileID: 298527831}
   - component: {fileID: 298527830}
+  - component: {fileID: 298527836}
+  - component: {fileID: 298527835}
+  - component: {fileID: 298527834}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,33 +313,73 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298527829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0022387514, y: -0.2475614, z: 6.044345}
+  m_LocalPosition: {x: 3.07, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &369967024 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3051302282540103994, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
-  m_PrefabInstance: {fileID: 3051302282122788049}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &369967031
+--- !u!114 &298527834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369967024}
+  m_GameObject: {fileID: 298527829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4325f7c13e77a34eab9945e6f604ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounds: {fileID: 1390705412}
-  xSpeed: 8
-  ySpeed: 5
+  bounds: {fileID: 0}
+  knockbackCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  xSpeed: 2
+  ySpeed: 1
+--- !u!114 &298527835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298527829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2584e1e578323e24686c5d68faff4587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attacks: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  health: {fileID: 298527836}
+--- !u!114 &298527836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298527829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdbceeddf00e0d4d8fbc8008675e582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  damageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  invincibilityTime: 0
+  abilityHandler: {fileID: 298527835}
+  controller: {fileID: 298527834}
 --- !u!1 &1036035082
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067334ad64f344949a5d32c0bc7a5a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidity: 0.512
   minMax: {x: 0, y: 1}
 --- !u!61 &1390705412 stripped
 BoxCollider2D:
@@ -546,7 +588,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3051302282540103969, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
+    - target: {fileID: 369967031, guid: 7469f9e8ceb00a94ca178b5fe2d97811, type: 3}
       propertyPath: bounds
       value: 
       objectReference: {fileID: 1390705412}
