@@ -6,11 +6,13 @@ public class AttackHandler : MonoBehaviour
 {
     [SerializeField] private List<AttackScriptableObject> attacks;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private Health health;
     private Coroutine attackRoutine;
     private AttackScriptableObject nextAttack;
     private bool useNextAttack;
     public void UseAttack(int attackIndex)
     {
+        if (health && health.Stunned()) return;
         if (attackRoutine != null) {
             if (nextAttack)
                 useNextAttack = true;
@@ -52,5 +54,12 @@ public class AttackHandler : MonoBehaviour
         }
         if (!useNextAttack)
             yield return new WaitForSeconds(attack.endLag);
+    }
+
+    public void CancelAttack()
+    {
+        StopCoroutine(attackRoutine);
+        attackRoutine = null;
+        useNextAttack = false;
     }
 }

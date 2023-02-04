@@ -14,12 +14,24 @@ public class Health : MonoBehaviour
     private bool alive = true;
     private bool isInvincible = false;
 
+    private float currentHitStun = 0;
+
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int value)
+    private void Update()
+    {
+        if (currentHitStun > 0)
+        {
+            currentHitStun -= Time.deltaTime;
+            if (currentHitStun < 0) currentHitStun = 0;
+        }
+
+    }
+
+    public void TakeDamage(int value, float hitStun = 0)
     {
         if (!alive || isInvincible) return;
         currentHealth -= value;
@@ -32,6 +44,7 @@ public class Health : MonoBehaviour
         else if (value > 0)
         {
             StartCoroutine(SetInvincible(invincibilityTime));
+            currentHitStun = Mathf.Max(currentHitStun, hitStun);
             damageEvent.Invoke();
         }
     }
@@ -47,5 +60,8 @@ public class Health : MonoBehaviour
         isInvincible = false;
     }
 
-
+    public bool Stunned()
+    {
+        return currentHitStun > 0;
+    }
 }
