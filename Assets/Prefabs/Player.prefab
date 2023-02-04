@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: 406b74e501ea43f45b117d23c75310af, type: 2}
   nextAttack: {fileID: 475954745907834309}
+  finished: 0
   hitboxes:
   - center: {fileID: 2001091781}
     radius: 0.5
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: a2a6d29239473b6478daea5aa575fc79, type: 2}
   nextAttack: {fileID: 0}
+  finished: 0
   hitboxes:
   - center: {fileID: 7804057495905389331}
     radius: 2
@@ -244,6 +246,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   health: {fileID: 282546644}
+  anim: {fileID: 6195081462096683413}
   maxY: 1
   xSpeed: 8
   ySpeed: 5
@@ -342,6 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: 036ea459fb2320a4995faa936458d3f8, type: 2}
   nextAttack: {fileID: 0}
+  finished: 0
   projectilePrefab: {fileID: 0}
   projectileSpawnPoint: {fileID: 5940049171484508129}
   projectileSpeed: 15
@@ -391,6 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: e8e15394dafd87c4591e6f89924d6ea3, type: 2}
   nextAttack: {fileID: 0}
+  finished: 0
   hitboxes:
   - center: {fileID: 7821897453556990910}
     radius: 0.5
@@ -440,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: a2a6d29239473b6478daea5aa575fc79, type: 2}
   nextAttack: {fileID: 0}
+  finished: 0
   hitboxes:
   - center: {fileID: 5074682584251390657}
     radius: 1

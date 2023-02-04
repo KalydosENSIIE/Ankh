@@ -81,7 +81,7 @@ public class AbilityHandler : MonoBehaviour
     public void Block(bool enabled = true)
     {
         if (blocking || health.Stunned()) return;
-        if (currentAttack || !currentAttack.finished) return;
+        if (currentAttack && !currentAttack.finished) return;
         blocking = enabled;
     }
 

@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private BoxCollider2D bounds;
     [SerializeField] private AnimationCurve knockbackCurve;
     [SerializeField] private Health health;
+    [SerializeField] private Animator anim;
     public float maxY = 1;
     private bool facingRight = true;
     public float xSpeed = 2;
@@ -17,11 +18,20 @@ public class Controller : MonoBehaviour
 
     public void Move(Vector2 moveDirection)
     {
+        if (moveDirection.magnitude > 0)
+        {
+            anim.SetBool("walk", true);
+        }
+        else
+        {
+            anim.SetBool("walk", false);
+        }
         if (health.Stunned()) return;
         if (moveDirection.x < 0) facingRight = false;
         else if (moveDirection.x > 0) facingRight = true;
         if ((moveDirection.x > 0 && transform.localScale.x < 0) || (moveDirection.x < 0 && transform.localScale.x > 0))
             Flip();
+        
         Vector3 nextPosition = transform.position + Vector3.right * moveDirection.x * xSpeed * Time.deltaTime;
         if (ConfirmXMove((nextPosition - transform.position).x))
         {
