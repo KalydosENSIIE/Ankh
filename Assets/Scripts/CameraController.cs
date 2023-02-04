@@ -43,5 +43,6 @@ public class CameraController : MonoBehaviour
             transform.Translate(deltaMax * Vector3.right, Space.World);
         }
     }
-
+    
+    
 }

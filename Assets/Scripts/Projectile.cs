@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
+    private Rigidbody rb;
     private string sourceTag = "";
     private bool active = true;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     public void SetVelocity(Vector3 velocity)
     {
