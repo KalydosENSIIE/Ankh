@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
+public class Loot{
+    public GameObject item;
+    public float probability;
+}
 
 public class Enemy : MonoBehaviour
 {
@@ -19,15 +23,19 @@ public class Enemy : MonoBehaviour
     public enum EnemyState { TargetPlayer, RandomMove, Idle, AlignWithPlayer }
     protected EnemyState state = EnemyState.RandomMove;
     private float timeBeformNextRandomMoveAvailable = 0;
+    protected Health health;
+    [SerializeField] private List<Loot> loots;
 
     public virtual void Start()
     {
         controller = GetComponent<Controller>();
-        playerTransform = GameObject.FindGameObjectWithTag("player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        health = GetComponent<Health>();
     }
 
     public virtual void Update()
     {
+        if (health.IsDead()) return;
         if (timeBeformNextRandomMoveAvailable > 0)
             timeBeformNextRandomMoveAvailable -= Time.deltaTime;
     }
@@ -94,5 +102,20 @@ public class Enemy : MonoBehaviour
     protected void ThrowProjectile()
     {
 
+    }
+
+    public void Loot()
+    {
+        float t = 0;
+        float r = Random.Range(0, 1);
+        foreach (Loot loot in loots)
+        {
+            t += loot.probability;
+            if (t > r)
+            {
+                Instantiate(loot.item);
+                return;
+            }
+        }
     }
 }

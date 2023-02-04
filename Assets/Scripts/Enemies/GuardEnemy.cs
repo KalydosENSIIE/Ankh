@@ -14,6 +14,7 @@ public class GuardEnemy : Enemy
     public override void Update()
     {
         base.Update();
+        if (health.IsDead()) return;
         if (!playerTransform) return;
         TargetPlayer();
         if (DistanceFromPlayer() < maxDistanceForAttack)

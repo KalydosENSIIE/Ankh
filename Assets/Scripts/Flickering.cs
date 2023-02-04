@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flickering : MonoBehaviour
 {
     [SerializeField] private Color flashColor;
-    [SerializeField] private float duration = 0.1f;
+    public float duration = 0.1f;
     [SerializeField] private MeshRenderer rend;
     [SerializeField] private int flashCount = 1;
 

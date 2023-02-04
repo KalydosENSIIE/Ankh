@@ -9,14 +9,16 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private UnityEvent damageEvent;
     [SerializeField] private UnityEvent deathEvent;
-    [SerializeField] private float invincibilityTime = 0f;
+    [SerializeField] private UnityEvent healEvent;
     [SerializeField] private AbilityHandler abilityHandler;
     [SerializeField] private Controller controller;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Flickering flickering;
 
     private int currentHealth;
     private bool alive = true;
     private bool isInvincible = false;
+    private Coroutine invincibilityRoutine;
 
     private float currentHitStun = 0;
 
@@ -57,21 +59,39 @@ public class Health : MonoBehaviour
         {
             alive = false;
             deathEvent.Invoke();
+            StartCoroutine(DeathCoroutine());
         }
         else if (value > 0)
         {
-            StartCoroutine(SetInvincible(invincibilityTime));
             currentHitStun = Mathf.Max(currentHitStun, hitStun);
             damageEvent.Invoke();
         }
         healthBar.value = currentHealth / maxHealth;
+    }
+
+    public void Heal(int value)
+    {
+        if (!alive) return;
+        currentHealth += value;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        healthBar.value = currentHealth / maxHealth;
+        healEvent.Invoke();
     }
     
     public bool IsDead()
     {
         return !alive;
     }
-    public IEnumerator SetInvincible(float duration)
+
+    public void SetInvincible(float duration)
+    {
+        if (invincibilityRoutine != null)
+        {
+            StopCoroutine(invincibilityRoutine);
+        }
+        invincibilityRoutine = StartCoroutine(InvincibilityRoutine(duration));
+    }
+    public IEnumerator InvincibilityRoutine(float duration)
     {
         isInvincible = true;
         yield return new WaitForSeconds(duration);
@@ -81,5 +101,12 @@ public class Health : MonoBehaviour
     public bool Stunned()
     {
         return currentHitStun > 0;
+    }
+
+    private IEnumerator DeathCoroutine()
+    {
+        flickering.Flash();
+        yield return new WaitForSeconds(flickering.duration);
+        Destroy(gameObject);
     }
 }

@@ -15,6 +15,7 @@ public class ResearcherEnemy : Enemy
     public override void Update()
     {
         base.Update();
+        if (health.IsDead()) return;
         if (!playerTransform) return;
         if (state == EnemyState.AlignWithPlayer)
         {
