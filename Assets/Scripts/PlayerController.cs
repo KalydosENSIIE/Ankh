@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance{get; private set;}
     private PlayerInput playerInput;
     public BoxCollider2D bounds;
     public float xSpeed = 2;
@@ -12,6 +13,11 @@ public class PlayerController : MonoBehaviour
     public float depthSlope = 45;
     private Vector2 moveDirection;
     private new Renderer renderer;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
