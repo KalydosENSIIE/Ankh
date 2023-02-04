@@ -66,7 +66,7 @@ public class Health : MonoBehaviour
             currentHitStun = Mathf.Max(currentHitStun, hitStun);
             damageEvent.Invoke();
         }
-        healthBar.value = currentHealth / maxHealth;
+        if(healthBar) healthBar.value = currentHealth / maxHealth;
     }
 
     public void Heal(int value)
