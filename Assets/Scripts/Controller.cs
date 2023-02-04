@@ -5,11 +5,13 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D bounds;
+    [SerializeField] private AnimationCurve knockbackCurve;
     private bool facingRight = true;
     public float xSpeed = 2;
     public float ySpeed = 1;
     public float depthSlope = 45;
     private new Renderer renderer;
+    private Coroutine knockbackRoutine;
 
     private void Start()
     {
@@ -39,5 +41,26 @@ public class Controller : MonoBehaviour
     public bool isFacingRight()
     {
         return facingRight;
+    }
+
+    public void Knockback(float distance, float duration, bool knockbackedRight)
+    {
+        if (knockbackRoutine != null)
+            StopCoroutine(knockbackRoutine);
+        knockbackRoutine = StartCoroutine(KnockbackRoutine(distance, duration, knockbackedRight));
+    }
+
+    public IEnumerator KnockbackRoutine(float distance, float duration, bool knockbackedRight)
+    {
+        float currentTime = 0;
+        float currentDistance = 0;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            if (currentTime > duration) currentTime = 0;
+            transform.Translate(Vector3.right * (knockbackedRight ? 1 : -1) * (knockbackCurve.Evaluate(currentTime) - currentDistance));
+            currentDistance = knockbackCurve.Evaluate(currentTime);
+            yield return 0;
+        }
     }
 }

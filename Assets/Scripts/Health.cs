@@ -9,6 +9,8 @@ public class Health : MonoBehaviour
     [SerializeField] private UnityEvent damageEvent;
     [SerializeField] private UnityEvent deathEvent;
     [SerializeField] private float invincibilityTime = 0f;
+    [SerializeField] private AbilityHandler abilityHandler;
+    [SerializeField] private Controller controller;
 
     private int currentHealth;
     private bool alive = true;
@@ -29,6 +31,19 @@ public class Health : MonoBehaviour
             if (currentHitStun < 0) currentHitStun = 0;
         }
 
+    }
+
+    public void Hit(AttackScriptableObject attack, bool fromRight = false)
+    {
+        if (abilityHandler.isBlocking() && fromRight == controller.isFacingRight() && attack.canBeBlocked)
+        {
+            controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, !fromRight);
+        }
+        else
+        {
+            controller.Knockback(attack.knockback, attack.knockbackDuration, !fromRight);
+            TakeDamage(attack.damage, attack.hitStun);
+        }
     }
 
     public void TakeDamage(int value, float hitStun = 0)

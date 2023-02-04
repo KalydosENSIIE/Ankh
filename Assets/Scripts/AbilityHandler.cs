@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackHandler : MonoBehaviour
+public class AbilityHandler : MonoBehaviour
 {
     [SerializeField] private List<AttackScriptableObject> attacks;
     [SerializeField] private LayerMask enemyLayer;
@@ -10,8 +10,10 @@ public class AttackHandler : MonoBehaviour
     private Coroutine attackRoutine;
     private AttackScriptableObject nextAttack;
     private bool useNextAttack;
+    private bool blocking = false;
     public void UseAttack(int attackIndex)
     {
+        if (blocking) return;
         if (health && health.Stunned()) return;
         if (attackRoutine != null) {
             if (nextAttack)
@@ -24,6 +26,18 @@ public class AttackHandler : MonoBehaviour
             StartCoroutine(AttackRoutine(nextAttack));
         }
         attackRoutine = StartCoroutine(AttackRoutine(attacks[attackIndex]));
+    }
+
+    public void Block(bool enabled = true)
+    {
+        if (blocking || attackRoutine != null || health.Stunned()) return;
+        blocking = enabled;
+    }
+
+
+    public bool isBlocking()
+    {
+        return blocking;
     }
 
     private IEnumerator AttackRoutine(AttackScriptableObject attack) 
@@ -48,7 +62,7 @@ public class AttackHandler : MonoBehaviour
                 foreach(Collider collider in hitColliders)
                 {
                     Health health = collider.GetComponent<Health>();
-                    if (health) health.TakeDamage(attack.damage);
+                    if (health) health.Hit(attack, transform.position.x > collider.transform.position.x);
                 }
             }
         }
@@ -56,10 +70,11 @@ public class AttackHandler : MonoBehaviour
             yield return new WaitForSeconds(attack.endLag);
     }
 
-    public void CancelAttack()
+    public void CancelAction()
     {
-        StopCoroutine(attackRoutine);
+        if (attackRoutine != null) StopCoroutine(attackRoutine);
         attackRoutine = null;
         useNextAttack = false;
+        blocking = false;
     }
 }
