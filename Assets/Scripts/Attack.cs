@@ -6,9 +6,6 @@ public abstract class Attack : MonoBehaviour
 {
     public AttackScriptableObject parameters;
     public Attack nextAttack;
-    public bool useNextAttack{get;set;}
-    public delegate void AttackEndEvent();
-    public AttackEndEvent attackEndEvent;
-
+    public bool finished = false;
     public abstract IEnumerator AttackRoutine(LayerMask enemyLayer);
 }

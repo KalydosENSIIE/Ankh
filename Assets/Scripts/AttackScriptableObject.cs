@@ -23,4 +23,5 @@ public class AttackScriptableObject : ScriptableObject
     public float knockback = 1;
     public float knockbackDuration = 0.5f;
     public float blockedKnockback = 0.1f;
+    public string animationName = "";
 }

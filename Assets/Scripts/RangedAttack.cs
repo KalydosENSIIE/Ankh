@@ -10,13 +10,12 @@ public class RangedAttack : Attack
     
     public override IEnumerator AttackRoutine(LayerMask enemyLayer) 
     {
+        finished = false;
         yield return new WaitForSeconds(parameters.startTime);
         Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation).GetComponent<Projectile>();
         projectile.Initialize(gameObject, projectileSpawnPoint.right * projectileSpeed, parameters);
 
-        if (!useNextAttack)
-            yield return new WaitForSeconds(parameters.endLag);
-        attackEndEvent.Invoke();
-        attackEndEvent = null;
+        yield return new WaitForSeconds(parameters.endLag);
+        finished = true;
     }
 }

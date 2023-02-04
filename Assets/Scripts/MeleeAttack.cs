@@ -8,6 +8,7 @@ public class MeleeAttack : Attack
 
     public override IEnumerator AttackRoutine(LayerMask enemyLayer) 
     {
+        finished = false;
         yield return new WaitForSeconds(parameters.startTime);
         float currentTime = parameters.startTime;
         for (int i = 0; i < hitboxes.Count; i++)
@@ -31,9 +32,7 @@ public class MeleeAttack : Attack
                 }
             }
         }
-        if (!useNextAttack)
-            yield return new WaitForSeconds(parameters.endLag);
-        attackEndEvent.Invoke();
-        attackEndEvent = null;
+        yield return new WaitForSeconds(parameters.endLag);
+        finished = true;
     }
 }

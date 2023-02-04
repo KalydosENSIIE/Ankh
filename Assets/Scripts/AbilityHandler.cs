@@ -21,10 +21,10 @@ public class AbilityHandler : MonoBehaviour
     [SerializeField] private Health health;
     [SerializeField] private Animator anim;
     private Cooldown[] cooldowns;
-    private Coroutine attackRoutine;
     private Attack currentAttack;
-    private int currentAttackIndex;
+    private int currentAttackIndex = -1;
     private bool blocking = false;
+    private bool useNextAttack = false;
 
     void Start()
     {
@@ -33,41 +33,55 @@ public class AbilityHandler : MonoBehaviour
 
     public void TryUseAttack(int attackIndex)
     {
-        if (blocking) return;
+        if (blocking || (currentAttack && useNextAttack)) return;
         if (health && health.Stunned()) return;
-        if (!cooldowns[attackIndex].finished) {Debug.Log("OnCooldown"); return;}
-        if (attackRoutine != null && attackIndex == currentAttackIndex) {
-            if (currentAttack.nextAttack)
-                currentAttack.useNextAttack = true;
+        if (attackIndex == currentAttackIndex) {
+            if (currentAttack.nextAttack) 
+            {
+                useNextAttack = true;
+            }
             return;
         }
-        if (currentAttack && currentAttack.useNextAttack)
+        if (currentAttack && !currentAttack.finished) return;
+        if (!cooldowns[attackIndex].finished) {Debug.Log("OnCooldown"); return;}
+        
+        UseAttack(attacks[attackIndex]);
+        currentAttackIndex = attackIndex;
+        cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
+        anim.SetTrigger(attacks[attackIndex].parameters.animationName);
+    }
+
+    private void Update()
+    {
+        if (currentAttack && useNextAttack && currentAttack.finished)
         {
             UseAttack(currentAttack.nextAttack);
+            anim.SetTrigger(currentAttack.parameters.animationName);
+            useNextAttack = false;
             cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
             return;
         }
-        UseAttack(attacks[attackIndex]);
-        cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
-        currentAttackIndex = attackIndex;
-        print(attackIndex);
-        if (attackIndex == 0)
+        else
         {
-            anim.SetTrigger("light");
+            if (currentAttack && currentAttack.finished)
+            {
+                currentAttackIndex = -1;
+                currentAttack = null;
+            }
         }
     }
 
     private void UseAttack(Attack attack)
     {
         currentAttack = attack;
-        attackRoutine = StartCoroutine(attack.AttackRoutine(enemyLayer));
-        attack.attackEndEvent += () => attackRoutine = null;
+        StartCoroutine(attack.AttackRoutine(enemyLayer));
 
     }
 
     public void Block(bool enabled = true)
     {
-        if (blocking || attackRoutine != null || health.Stunned()) return;
+        if (blocking || health.Stunned()) return;
+        if (currentAttack || !currentAttack.finished) return;
         blocking = enabled;
     }
 
@@ -109,9 +123,11 @@ public class AbilityHandler : MonoBehaviour
 
     public void CancelAction()
     {
-        if (attackRoutine != null) StopCoroutine(attackRoutine);
-        attackRoutine = null;
-        currentAttack.useNextAttack = false;
+        if (currentAttack)
+        {
+            useNextAttack = false;
+            currentAttack = null;
+        }
         blocking = false;
     }
 }
