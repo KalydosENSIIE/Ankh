@@ -16,4 +16,5 @@ public class AttackScriptableObject : ScriptableObject
     public float startTime = 0;
     public float endLag = 0;
     public List<Hitbox> hitboxes;
+    public AttackScriptableObject nextAttack;
 }

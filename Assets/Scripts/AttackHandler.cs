@@ -7,14 +7,26 @@ public class AttackHandler : MonoBehaviour
     [SerializeField] private List<AttackScriptableObject> attacks;
     [SerializeField] private LayerMask enemyLayer;
     private Coroutine attackRoutine;
+    private AttackScriptableObject nextAttack;
+    private bool useNextAttack;
     public void UseAttack(int attackIndex)
     {
-        if (attackRoutine != null) return;
+        if (attackRoutine != null) {
+            if (nextAttack)
+                useNextAttack = true;
+            return;
+        }
+        if (useNextAttack)
+        {
+            useNextAttack = false;
+            StartCoroutine(AttackRoutine(nextAttack));
+        }
         attackRoutine = StartCoroutine(AttackRoutine(attacks[attackIndex]));
     }
 
     private IEnumerator AttackRoutine(AttackScriptableObject attack) 
     {
+        nextAttack = attack.nextAttack;
         yield return new WaitForSeconds(attack.startTime);
         float currentTime = attack.startTime;
         for (int i = 0; i < attack.hitboxes.Count; i++)
@@ -38,6 +50,7 @@ public class AttackHandler : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(attack.endLag);
+        if (!useNextAttack)
+            yield return new WaitForSeconds(attack.endLag);
     }
 }
