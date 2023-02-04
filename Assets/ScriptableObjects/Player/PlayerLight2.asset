@@ -15,7 +15,7 @@ MonoBehaviour:
   damage: 1
   hitStun: 0
   startTime: 0.1
-  endLag: 0.1
+  endLag: 0.2
   cooldown: 0
   canBeBlocked: 1
   knockback: 1

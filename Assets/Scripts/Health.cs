@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
-    [SerializeField] private UnityEvent damageEvent;
-    [SerializeField] private UnityEvent deathEvent;
-    [SerializeField] private UnityEvent healEvent;
+    [SerializeField] public UnityEvent damageEvent;
+    [SerializeField] public UnityEvent deathEvent;
+    [SerializeField] public UnityEvent healEvent;
     [SerializeField] private AbilityHandler abilityHandler;
     [SerializeField] private Controller controller;
     [SerializeField] private Slider healthBar;
