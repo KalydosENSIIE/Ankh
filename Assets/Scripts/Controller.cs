@@ -22,20 +22,31 @@ public class Controller : MonoBehaviour
         else if (moveDirection.x > 0) facingRight = true;
         if ((moveDirection.x > 0 && transform.localScale.x < 0) || (moveDirection.x < 0 && transform.localScale.x > 0))
             Flip();
-        Vector3 previousPosition = transform.position;
-        transform.Translate(Vector3.right * moveDirection.x * xSpeed * Time.deltaTime);
-        if (col.bounds.max.x > bounds.bounds.max.x || col.bounds.min.x < bounds.bounds.min.x)
+        Vector3 nextPosition = transform.position + Vector3.right * moveDirection.x * xSpeed * Time.deltaTime;
+        if (ConfirmXMove((nextPosition - transform.position).x))
         {
-            transform.position = previousPosition;
+            transform.position = nextPosition;
         }
         if (Global.depthSlope % 180 != 0)
         {
-            previousPosition = transform.position;
-            transform.Translate(moveDirection.y * ySpeed * Time.deltaTime * (Vector3.up + Vector3.forward / Mathf.Tan(Global.depthSlope / 180 * Mathf.PI)));
-            if (col.bounds.max.y > bounds.bounds.max.y || col.bounds.min.y < bounds.bounds.min.y || col.bounds.min.y > maxY) {
-                transform.position = previousPosition;
+            nextPosition = transform.position + moveDirection.y * ySpeed * Time.deltaTime * (Vector3.up + Vector3.forward / Mathf.Tan(Global.depthSlope / 180 * Mathf.PI));
+            if (ConfirmYMove((nextPosition - transform.position).y)) {
+                transform.position = nextPosition;
             }
         }
+    }
+
+    private bool ConfirmXMove(float xDelta)
+    {
+        bool minCondition = xDelta > 0 || col.bounds.min.x + xDelta > bounds.bounds.min.x;
+        bool maxCondition = xDelta < 0 || col.bounds.max.x + xDelta < bounds.bounds.max.x;
+        return minCondition && maxCondition;
+    }
+    private bool ConfirmYMove(float yDelta)
+    {
+        bool minCondition = yDelta > 0 || col.bounds.min.y + yDelta > bounds.bounds.min.y;
+        bool maxCondition = yDelta < 0 || (col.bounds.max.y + yDelta < bounds.bounds.max.y && col.bounds.min.y + yDelta < maxY);
+        return minCondition && maxCondition;
     }
 
     public bool isFacingRight()
