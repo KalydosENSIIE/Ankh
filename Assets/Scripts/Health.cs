@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float invincibilityTime = 0f;
     [SerializeField] private AbilityHandler abilityHandler;
     [SerializeField] private Controller controller;
+    [SerializeField] private Slider healthBar;
 
     private int currentHealth;
     private bool alive = true;
@@ -35,7 +37,6 @@ public class Health : MonoBehaviour
 
     public void Hit(AttackScriptableObject attack, bool fromRight = false)
     {
-        Debug.Log("Hit");
         if (abilityHandler.isBlocking() && fromRight == controller.isFacingRight() && attack.canBeBlocked)
         {
             controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, !fromRight);
@@ -49,7 +50,6 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int value, float hitStun = 0)
     {
-        Debug.Log(gameObject.name + " Take Damage");
         if (!alive || isInvincible) return;
         currentHealth -= value;
         if (currentHealth < 0) currentHealth = 0;
@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
             currentHitStun = Mathf.Max(currentHitStun, hitStun);
             damageEvent.Invoke();
         }
-        Debug.Log(currentHealth);
+        healthBar.value = currentHealth / maxHealth;
     }
     
     public bool IsDead()
