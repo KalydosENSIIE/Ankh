@@ -11,21 +11,20 @@ public class Controller : MonoBehaviour
     private bool facingRight = true;
     public float xSpeed = 2;
     public float ySpeed = 1;
-    private new Renderer renderer;
+    [SerializeField] private Collider col;
     private Coroutine knockbackRoutine;
 
-    private void Start()
-    {
-        renderer = GetComponent<Renderer>();
-    }
+
     public void Move(Vector2 moveDirection)
     {
         if (health.Stunned()) return;
         if (moveDirection.x < 0) facingRight = false;
         else if (moveDirection.x > 0) facingRight = true;
+        if ((moveDirection.x > 0 && transform.localScale.x < 0) || (moveDirection.x < 0 && transform.localScale.x > 0))
+            Flip();
         Vector3 previousPosition = transform.position;
         transform.Translate(Vector3.right * moveDirection.x * xSpeed * Time.deltaTime);
-        if (renderer.bounds.max.x > bounds.bounds.max.x || renderer.bounds.min.x < bounds.bounds.min.x)
+        if (col.bounds.max.x > bounds.bounds.max.x || col.bounds.min.x < bounds.bounds.min.x)
         {
             transform.position = previousPosition;
         }
@@ -33,8 +32,7 @@ public class Controller : MonoBehaviour
         {
             previousPosition = transform.position;
             transform.Translate(moveDirection.y * ySpeed * Time.deltaTime * (Vector3.up + Vector3.forward / Mathf.Tan(Global.depthSlope / 180 * Mathf.PI)));
-            if (renderer.bounds.max.y > bounds.bounds.max.y || renderer.bounds.min.y < bounds.bounds.min.y || renderer.bounds.min.y > maxY)
-            {
+            if (col.bounds.max.y > bounds.bounds.max.y || col.bounds.min.y < bounds.bounds.min.y || col.bounds.min.y > maxY) {
                 transform.position = previousPosition;
             }
         }
@@ -51,7 +49,11 @@ public class Controller : MonoBehaviour
             StopCoroutine(knockbackRoutine);
         knockbackRoutine = StartCoroutine(KnockbackRoutine(distance, duration, knockbackedRight));
     }
-
+    private void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        transform.localScale = new Vector3(scale.x * -1, scale.y, scale.z);
+    }
     public IEnumerator KnockbackRoutine(float distance, float duration, bool knockbackedRight)
     {
         float currentTime = 0;

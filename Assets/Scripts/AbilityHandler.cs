@@ -19,6 +19,7 @@ public class AbilityHandler : MonoBehaviour
     [SerializeField] private List<Attack> attacks;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Health health;
+    [SerializeField] private Animator anim;
     private Cooldown[] cooldowns;
     private Coroutine attackRoutine;
     private Attack currentAttack;
@@ -49,6 +50,11 @@ public class AbilityHandler : MonoBehaviour
         UseAttack(attacks[attackIndex]);
         cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
         currentAttackIndex = attackIndex;
+        print(attackIndex);
+        if (attackIndex == 0)
+        {
+            anim.SetTrigger("light");
+        }
     }
 
     private void UseAttack(Attack attack)
