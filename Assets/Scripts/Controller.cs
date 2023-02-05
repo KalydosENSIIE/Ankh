@@ -29,7 +29,7 @@ public class Controller : MonoBehaviour
         if (health.Stunned()) return;
         if (moveDirection.x < 0) facingRight = false;
         else if (moveDirection.x > 0) facingRight = true;
-        if ((moveDirection.x > 0 && transform.localScale.x < 0) || (moveDirection.x < 0 && transform.localScale.x > 0))
+        if ((moveDirection.x > 0 && transform.right.x < 0) || (moveDirection.x < 0 && transform.right.x > 0))
             Flip();
         
         Vector3 nextPosition = transform.position + Vector3.right * moveDirection.x * xSpeed * Time.deltaTime;
@@ -72,8 +72,7 @@ public class Controller : MonoBehaviour
     }
     private void Flip()
     {
-        Vector3 scale = transform.localScale;
-        transform.localScale = new Vector3(scale.x * -1, scale.y, scale.z);
+        transform.Rotate(0, 180, 0);
     }
     public IEnumerator KnockbackRoutine(float distance, float duration, bool knockbackedRight)
     {
