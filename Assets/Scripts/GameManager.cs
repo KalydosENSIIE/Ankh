@@ -10,6 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Fader fader;
     [SerializeField] private int mainMenuSceneIndex;
+    [SerializeField] private int nextScene;
+
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        Debug.Assert(Instance == null);
+        Instance = this;
+    }
+
 
     private void Start()
     {
@@ -32,5 +42,10 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         fader.TransitionToScene(mainMenuSceneIndex);
+    }
+
+    public void EndGame()
+    {
+        fader.TransitionToScene(nextScene);
     }
 }

@@ -11,6 +11,34 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 4720696054055543367}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2987773193502845388}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Loot
+      objectReference: {fileID: 0}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 369967031, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
       propertyPath: anim
       value: 
@@ -92,8 +120,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredDistanceFromPlayer: 0.5
   randomMoveTimeInterval: {x: 1, y: 3}
-  loots: []
+  loots:
+  - item: {fileID: 5327097237610143003, guid: 723d28cbb3f5c4d4ab1879e537cd87b7, type: 3}
+    probability: 0.2
+  yLimits: {x: 0, y: 0}
   maxDistanceForAttack: 1.6
+  idleTime: 2
 --- !u!95 &4720696054055543367 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6195081462096683413, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}

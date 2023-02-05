@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
             t += loot.probability;
             if (t > r)
             {
-                Instantiate(loot.item);
+                Instantiate(loot.item, transform.position, Quaternion.identity);
                 return;
             }
         }

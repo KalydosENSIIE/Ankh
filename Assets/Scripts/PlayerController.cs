@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
+        if (Time.timeScale == 0) return;
         moveDirection = value.Get<Vector2>();
     }
 
