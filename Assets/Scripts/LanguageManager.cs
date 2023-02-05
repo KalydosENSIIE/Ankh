@@ -11,7 +11,8 @@ public class LanguageManager : MonoBehaviour
 
     void Awake()
     {
-        SetLanguage(defaultLanguage);
+        if(!language)
+            SetLanguage(defaultLanguage);
     }
 
     public void SetLanguage(Language language)
