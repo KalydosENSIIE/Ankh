@@ -8,7 +8,7 @@ public class RangedAttack : Attack
     public Transform projectileSpawnPoint;
     public float projectileSpeed = 15;
     
-    public override IEnumerator AttackRoutine(LayerMask enemyLayer) 
+    public override IEnumerator AttackRoutine(LayerMask enemyLayer, bool facingRight) 
     {
         finished = false;
         yield return new WaitForSeconds(parameters.startTime);

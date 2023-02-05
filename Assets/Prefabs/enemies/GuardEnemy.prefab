@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 282546644, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 4720696054055543367}
+    - target: {fileID: 369967031, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 4720696054055543367}
+    - target: {fileID: 369967031, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: xSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 369967031, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: ySpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3051302282540103994, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
       propertyPath: m_Name
       value: GuardEnemy
@@ -77,4 +93,9 @@ MonoBehaviour:
   desiredDistanceFromPlayer: 0.5
   randomMoveTimeInterval: {x: 1, y: 3}
   loots: []
-  maxDistanceForAttack: 1
+  maxDistanceForAttack: 1.6
+--- !u!95 &4720696054055543367 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6195081462096683413, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+  m_PrefabInstance: {fileID: 1475511380964590546}
+  m_PrefabAsset: {fileID: 0}

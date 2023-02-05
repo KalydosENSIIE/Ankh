@@ -6,7 +6,7 @@ public class MeleeAttack : Attack
 {
     public List<Hitbox> hitboxes;
 
-    public override IEnumerator AttackRoutine(LayerMask enemyLayer) 
+    public override IEnumerator AttackRoutine(LayerMask enemyLayer, bool facingRight) 
     {
         finished = false;
         yield return new WaitForSeconds(parameters.startTime);
@@ -28,7 +28,7 @@ public class MeleeAttack : Attack
                 foreach(Collider collider in hitColliders)
                 {
                     Health health = collider.GetComponent<Health>();
-                    if (health) health.Hit(parameters, transform.position.x > collider.transform.position.x);
+                    if (health) health.Hit(parameters, facingRight);
                 }
             }
         }

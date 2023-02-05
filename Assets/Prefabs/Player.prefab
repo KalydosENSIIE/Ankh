@@ -270,7 +270,7 @@ MonoBehaviour:
   - {fileID: 723943448423166117}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   health: {fileID: 282546644}
   anim: {fileID: 6195081462096683413}
 --- !u!114 &282546644
@@ -299,6 +299,7 @@ MonoBehaviour:
   controller: {fileID: 369967031}
   healthBar: {fileID: 0}
   flickering: {fileID: 0}
+  anim: {fileID: 6195081462096683413}
 --- !u!1 &4835241249965705767
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,6 +46,28 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void MoveToward(Vector3 target)
+    {
+        float dx = xSpeed * Time.deltaTime;
+        float dy = ySpeed * Time.deltaTime;
+        if (Mathf.Abs(transform.position.x - target.x) > dx || Mathf.Abs(transform.position.y - target.y) > dy)
+        {
+            Move((target - transform.position).normalized);
+            return;
+        }
+        Vector3 newPos = transform.position;
+        if (Mathf.Abs(transform.position.x - target.x) <= dx)
+        {
+            newPos.x = target.x;
+        }
+        if (Mathf.Abs(transform.position.y - target.y) <= dy)
+        {
+            newPos.y = target.y;
+        }
+        transform.position = newPos;
+        Move(Vector2.zero);
+    }
+
     private bool ConfirmXMove(float xDelta)
     {
         bool minCondition = xDelta > 0 || col.bounds.min.x + xDelta > bounds.bounds.min.x;
@@ -82,10 +104,10 @@ public class Controller : MonoBehaviour
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            if (currentTime > duration) currentTime = 0;
-            transform.Translate(Vector3.right * (knockbackedRight ? 1 : -1) * (knockbackCurve.Evaluate(currentTime) - currentDistance));
+            if (currentTime > duration) currentTime = duration;
+            transform.Translate(distance * Vector3.right * (knockbackedRight ? 1 : -1) * (knockbackCurve.Evaluate(currentTime) - currentDistance));
             currentDistance = knockbackCurve.Evaluate(currentTime);
-            yield return 0;
+            yield return null;
         }
     }
 }

@@ -7,5 +7,5 @@ public abstract class Attack : MonoBehaviour
     public AttackScriptableObject parameters;
     public Attack nextAttack;
     public bool finished = false;
-    public abstract IEnumerator AttackRoutine(LayerMask enemyLayer);
+    public abstract IEnumerator AttackRoutine(LayerMask enemyLayer, bool facingRight);
 }

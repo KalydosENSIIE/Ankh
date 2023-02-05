@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
         controller = GetComponent<Controller>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         health = GetComponent<Health>();
+        abilityHandler = GetComponent<AbilityHandler>();
     }
 
     public virtual void Update()
@@ -38,13 +39,16 @@ public class Enemy : MonoBehaviour
         if (health.IsDead()) return;
         if (timeBeformNextRandomMoveAvailable > 0)
             timeBeformNextRandomMoveAvailable -= Time.deltaTime;
+        MoveTowardTarget();
     }
     protected void MoveTowardTarget()
     {
         Vector3 dir = (target - transform.position).normalized;
         Collider[] colliders = Physics.OverlapSphere(transform.position + dir * availableSpaceDistanceCheck, 0.1f);
         if (colliders.Length == 0)
-            controller.Move(dir);
+            controller.MoveToward(target);
+        else
+            controller.Move(Vector2.zero);
     }
 
     protected void StopMoving()
@@ -91,17 +95,17 @@ public class Enemy : MonoBehaviour
 
     protected void LightAttack()
     {
-
+        abilityHandler.TryUseAttack(0);
     }
 
     protected void HeavyAttack()
     {
-
+        abilityHandler.TryUseAttack(1);
     }
 
     protected void ThrowProjectile()
     {
-
+        abilityHandler.TryUseAttack(2);
     }
 
     public void Loot()

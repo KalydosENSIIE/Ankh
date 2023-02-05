@@ -6,7 +6,7 @@ public class Flickering : MonoBehaviour
 {
     [SerializeField] private Color flashColor;
     public float duration = 0.1f;
-    [SerializeField] private MeshRenderer rend;
+    [SerializeField] private SpriteRenderer rend;
     [SerializeField] private int flashCount = 1;
 
     private Color originalColor;

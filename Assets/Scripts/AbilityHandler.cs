@@ -25,10 +25,12 @@ public class AbilityHandler : MonoBehaviour
     private int currentAttackIndex = -1;
     private bool blocking = false;
     private bool useNextAttack = false;
+    private Controller controller;
 
     void Start()
     {
         cooldowns = new Cooldown[attacks.Count];
+        controller = GetComponent<Controller>();
     }
 
     public void TryUseAttack(int attackIndex)
@@ -74,7 +76,7 @@ public class AbilityHandler : MonoBehaviour
     private void UseAttack(Attack attack)
     {
         currentAttack = attack;
-        StartCoroutine(attack.AttackRoutine(enemyLayer));
+        StartCoroutine(attack.AttackRoutine(enemyLayer, controller.isFacingRight()));
 
     }
 

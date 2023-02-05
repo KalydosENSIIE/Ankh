@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Controller controller;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Flickering flickering;
+    [SerializeField] private Animator anim;
 
     private int currentHealth;
     private bool alive = true;
@@ -32,7 +33,11 @@ public class Health : MonoBehaviour
         if (currentHitStun > 0)
         {
             currentHitStun -= Time.deltaTime;
-            if (currentHitStun < 0) currentHitStun = 0;
+            if (currentHitStun <= 0)
+            {
+                currentHitStun = 0;
+                anim.SetBool("stunned", false);
+            }
         }
 
     }
@@ -41,11 +46,11 @@ public class Health : MonoBehaviour
     {
         if (abilityHandler.isBlocking() && fromRight == controller.isFacingRight() && attack.canBeBlocked)
         {
-            controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, !fromRight);
+            controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, fromRight);
         }
         else
         {
-            controller.Knockback(attack.knockback, attack.knockbackDuration, !fromRight);
+            controller.Knockback(attack.knockback, attack.knockbackDuration, fromRight);
             TakeDamage(attack.damage, attack.hitStun);
         }
     }
@@ -67,6 +72,8 @@ public class Health : MonoBehaviour
             damageEvent.Invoke();
         }
         if(healthBar) healthBar.value = currentHealth / maxHealth;
+        if (hitStun > 0)
+            anim.SetBool("stunned", true);
     }
 
     public void Heal(int value)
