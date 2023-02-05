@@ -1184,6 +1184,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8609219763473991171, guid: f36f014f789056345a3691b1f71f1c64, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1002047249513400718, guid: f36f014f789056345a3691b1f71f1c64, type: 3}
       propertyPath: fader
       value: 
@@ -1236,7 +1240,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8609219763473991171, guid: f36f014f789056345a3691b1f71f1c64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f36f014f789056345a3691b1f71f1c64, type: 3}
 --- !u!1001 &8555507218969161874
 PrefabInstance:
