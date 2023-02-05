@@ -10,6 +10,7 @@ public class MeleeAttack : Attack
     {
         finished = false;
         yield return new WaitForSeconds(parameters.startTime);
+        SoundsManager.Instance?.Attack(parameters.sound);
         float currentTime = parameters.startTime;
         for (int i = 0; i < hitboxes.Count; i++)
         {

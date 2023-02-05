@@ -36,3 +36,5 @@ MonoBehaviour:
     value: Bloquer
   - key: Move
     value: "D\xE9placement"
+  - key: Back
+    value: Retour
