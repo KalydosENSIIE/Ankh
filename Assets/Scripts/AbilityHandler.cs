@@ -37,6 +37,7 @@ public class AbilityHandler : MonoBehaviour
     {
         if (blocking || (currentAttack && useNextAttack)) return;
         if (health && health.Stunned()) return;
+        if (attackIndex >= attacks.Count) return;
         if (attackIndex == currentAttackIndex) {
             if (currentAttack.nextAttack) 
             {
