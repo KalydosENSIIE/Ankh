@@ -38,3 +38,5 @@ MonoBehaviour:
     value: "D\xE9placement"
   - key: Back
     value: Retour
+  - key: Language
+    value: Langue
