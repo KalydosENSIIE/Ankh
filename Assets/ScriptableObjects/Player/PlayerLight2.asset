@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerLight2
   m_EditorClassIdentifier: 
   damage: 1
-  hitStun: 0
+  hitStun: 1
   startTime: 0.1
-  endLag: 0.2
+  endLag: 0.5
   cooldown: 0
   canBeBlocked: 1
   knockback: 1

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PlayerLight1
   m_EditorClassIdentifier: 
   damage: 1
-  hitStun: 0
+  hitStun: 0.26
   startTime: 0.1
   endLag: 0.15
   cooldown: 0
   canBeBlocked: 1
-  knockback: 1
-  knockbackDuration: 0.5
+  knockback: 0.3
+  knockbackDuration: 0.26
   blockedKnockback: 0.1
   animationName: light

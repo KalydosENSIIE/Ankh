@@ -92,7 +92,7 @@ public class Controller : MonoBehaviour
             StopCoroutine(knockbackRoutine);
         knockbackRoutine = StartCoroutine(KnockbackRoutine(distance, duration, knockbackedRight));
     }
-    private void Flip()
+    public void Flip()
     {
         transform.Rotate(0, 180, 0);
     }
@@ -104,7 +104,7 @@ public class Controller : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             if (currentTime > duration) currentTime = duration;
-            transform.Translate(distance * Vector3.right * (knockbackedRight ? 1 : -1) * (knockbackCurve.Evaluate(currentTime) - currentDistance));
+            transform.Translate(distance * new Vector3(1,0,0) * (knockbackedRight ? -1 : 1) * (knockbackCurve.Evaluate(currentTime) - currentDistance), Space.World);
             currentDistance = knockbackCurve.Evaluate(currentTime);
             yield return null;
         }

@@ -256,7 +256,7 @@ MonoBehaviour:
   controller: {fileID: 369967031}
   healthBar: {fileID: 0}
   flickering: {fileID: 598910230282890504}
-  anim: {fileID: 0}
+  anim: {fileID: 6195081462096683413}
 --- !u!114 &598910230282890504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashColor: {r: 1, g: 1, b: 1, a: 0.14117648}
-  duration: 0.1
+  duration: 1
   rend: {fileID: 5830786586015847561}
-  flashCount: 1
+  flashCount: 3
 --- !u!1 &4835241249965705767
 GameObject:
   m_ObjectHideFlags: 0

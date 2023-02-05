@@ -46,11 +46,11 @@ public class Health : MonoBehaviour
     {
         if (abilityHandler.isBlocking() && fromRight == controller.isFacingRight() && attack.canBeBlocked)
         {
-            controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, fromRight);
+            controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, !fromRight);
         }
         else
         {
-            controller.Knockback(attack.knockback, attack.knockbackDuration, fromRight);
+            controller.Knockback(attack.knockback, attack.knockbackDuration, !fromRight);
             TakeDamage(attack.damage, attack.hitStun);
         }
     }

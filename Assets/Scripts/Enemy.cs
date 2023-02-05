@@ -93,18 +93,29 @@ public class Enemy : MonoBehaviour
         return (transform.position - playerTransform.position).magnitude;
     }
 
+    protected void RotateTowardPlayer()
+    {
+        if (controller.isFacingRight() && playerTransform.position.x < transform.position.x)
+            controller.Flip();
+        if (!controller.isFacingRight() && playerTransform.position.x > transform.position.x)
+            controller.Flip();
+    }
+
     protected void LightAttack()
     {
+        RotateTowardPlayer();
         abilityHandler.TryUseAttack(0);
     }
 
     protected void HeavyAttack()
     {
+        RotateTowardPlayer();
         abilityHandler.TryUseAttack(1);
     }
 
     protected void ThrowProjectile()
     {
+        RotateTowardPlayer();
         abilityHandler.TryUseAttack(2);
     }
 
