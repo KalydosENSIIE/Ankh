@@ -8,7 +8,7 @@ public class Fader : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] float fadeInTime;
     [SerializeField] float fadeOutTime;
-    private bool transitioning = false;
+    public bool transitioning {get; private set;}
     private Coroutine routine;
 
     public void FadeOut()
