@@ -550,7 +550,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3051302282540103998}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2039712352774886696
 AudioSource:
@@ -699,7 +699,7 @@ MonoBehaviour:
   audioSource: {fileID: 2533923722037217660}
   projectilePrefab: {fileID: 3564563593399287567, guid: 55806b5aa8c5b6943bfc78639cb8a65f, type: 3}
   projectileSpawnPoint: {fileID: 5940049171484508129}
-  projectileSpeed: 15
+  projectileSpeed: 7
 --- !u!82 &2533923722037217660
 AudioSource:
   m_ObjectHideFlags: 0

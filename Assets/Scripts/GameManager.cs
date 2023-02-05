@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    [SerializeField] private InputActionReference pauseAction;
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Fader fader;
@@ -25,13 +25,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         fader.FadeIn();
-    }
-    private void OnPause(InputValue value)
-    {
-        TogglePause();
+        pauseAction.action.performed += TogglePause;
+        pauseAction.action.Enable();
     }
 
-    public void TogglePause()
+    public void TogglePause(InputAction.CallbackContext context)
     {
         Time.timeScale = 1 - Time.timeScale;
         if (Time.timeScale <= 0)
@@ -54,5 +52,10 @@ public class GameManager : MonoBehaviour
     {
         SoundsManager.Instance.GameOver();
         fader.TransitionToScene(SceneManager.GetActiveScene().buildIndex, 2);
+    }
+
+    void OnDestroy()
+    {
+        pauseAction.action.performed -= TogglePause;
     }
 }

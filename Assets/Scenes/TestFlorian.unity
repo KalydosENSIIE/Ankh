@@ -985,7 +985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6709681738406593553, guid: 62557ccf481432443a47539fd3e2ea06, type: 3}
       propertyPath: waves.Array.data[1].enemies.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6709681738406593553, guid: 62557ccf481432443a47539fd3e2ea06, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0]
