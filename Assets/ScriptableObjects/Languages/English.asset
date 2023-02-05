@@ -16,3 +16,20 @@ MonoBehaviour:
   - key: Example
     value: On a dark night, the mumy of Pharaoh Akoudbaten suddenly woke up in the
       Voelur Museum.
+  - key: Intro1
+    value: Museums have come under fire for keeping artefacts that were once looted
+      by treasure hunters, especially the famous Voleur Museum in Paris.
+  - key: Intro2
+    value: Critics have called for the artefacts to be returned to their rightful
+      countries, but most museums have refused.
+  - key: Intro3
+    value: A rare Egyptian artefact was recently brought to the museum, the Key to
+      Forbidden Life.
+  - key: Intro4
+    value: Legends say that it has the power to bring warriors back from the dead
+      to defend their country and heritage.
+  - key: Intro5
+    value: The legends were true, and the mummy of Pharaoh Akoudbaten has been reborn.
+  - key: Intro6
+    value: He will stop at nothing to reclaim the treasures of his people, and return
+      them to his homeland!
