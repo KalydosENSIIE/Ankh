@@ -10,7 +10,7 @@ public class ProfessorEnemies : Enemy
     public override void Start()
     {
         base.Start();
-        timeBeforeNextAttack = Random.Range(2, 4);
+        timeBeforeNextAttack = Random.Range(3, 5);
     }
     public override void Update()
     {
@@ -40,7 +40,7 @@ public class ProfessorEnemies : Enemy
             if (DistanceFromPlayer() < maxDistanceForAttack)
             {
                 LightAttack();
-                timeBeforeNextAttack = Random.Range(2, 4);
+                timeBeforeNextAttack = Random.Range(3, 5);
                 state = EnemyState.RandomMove;
                 TargetRandom();
                 tryAttacking = false;

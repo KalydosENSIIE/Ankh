@@ -85,7 +85,7 @@ public class Health : MonoBehaviour
         if (!alive) return;
         currentHealth += value;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-        healthBar.value = currentHealth / maxHealth;
+        healthBar.value = (float)currentHealth / maxHealth;
         healEvent.Invoke();
     }
     
