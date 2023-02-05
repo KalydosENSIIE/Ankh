@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 716610557847303049, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
       propertyPath: parameters
       value: 
-      objectReference: {fileID: 11400000, guid: af80cad52cd77a54a8c75b284a1d8503, type: 2}
+      objectReference: {fileID: 11400000, guid: 6426bd2f324819945a329d6d5b24ba88, type: 2}
     - target: {fileID: 3051302282540103994, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
       propertyPath: m_Name
       value: ProfessorEnemy

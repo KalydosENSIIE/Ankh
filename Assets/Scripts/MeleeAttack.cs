@@ -28,7 +28,7 @@ public class MeleeAttack : Attack
                 foreach(Collider collider in hitColliders)
                 {
                     Health health = collider.GetComponent<Health>();
-                    if (health) health.Hit(parameters, facingRight);
+                    if (health) health.Hit(parameters, !facingRight);
                 }
             }
         }

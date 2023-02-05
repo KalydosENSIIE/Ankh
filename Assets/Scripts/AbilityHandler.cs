@@ -85,7 +85,7 @@ public class AbilityHandler : MonoBehaviour
             StartCoroutine(attack.AttackRoutine(enemyLayer, true));
         }
         else
-            StartCoroutine(attack.AttackRoutine(enemyLayer, !controller.isFacingRight()));
+            StartCoroutine(attack.AttackRoutine(enemyLayer, controller.isFacingRight()));
 
     }
 
