@@ -11,8 +11,7 @@ public class RangedAttack : Attack
     public override IEnumerator AttackRoutine(LayerMask enemyLayer, bool facingRight) 
     {
         finished = false;
-        if (parameters.sound && SoundsManager.Instance)
-            SoundsManager.Instance.Attack(parameters.sound);
+        audioSource?.Play();
         yield return new WaitForSeconds(parameters.startTime);
         Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
         projectile.Initialize(gameObject, new Vector3(facingRight ? 1 : -1, 0, 0) * projectileSpeed, parameters);
