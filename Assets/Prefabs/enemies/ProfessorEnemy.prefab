@@ -214,6 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredDistanceFromPlayer: 0.5
   randomMoveTimeInterval: {x: 1, y: 3}
-  loots: []
+  loots:
+  - item: {fileID: 5327097237610143003, guid: 723d28cbb3f5c4d4ab1879e537cd87b7, type: 3}
+    probability: 0.2
   yLimits: {x: -0.59, y: 0.91}
   maxDistanceForAttack: 1.6

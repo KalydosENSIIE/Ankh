@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class Collectable : MonoBehaviour
 {
     private bool active = true;
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (!active || !(collision.gameObject.tag == "Player")) return;
+        if (!active || !(collision.tag == "Player")) return;
         active = false;
         Destroy(gameObject);
         Effect(collision.gameObject);
