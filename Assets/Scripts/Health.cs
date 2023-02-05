@@ -71,7 +71,7 @@ public class Health : MonoBehaviour
             currentHitStun = Mathf.Max(currentHitStun, hitStun);
             damageEvent.Invoke();
         }
-        if(healthBar) healthBar.value = currentHealth / maxHealth;
+        if(healthBar) healthBar.value = (float)currentHealth / maxHealth;
         if (hitStun > 0)
             anim.SetBool("stunned", true);
     }

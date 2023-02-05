@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3134c1083f58b439084b79f37a05ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromCenter: 5
-  yRange: {x: 0, y: 0}
+  distanceFromCenter: 10
+  yRange: {x: -0.59, y: 0.92}
   waves: []
-  maxTimeBetweenWaves: 0
+  maxTimeBetweenWaves: Infinity

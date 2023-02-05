@@ -42,17 +42,16 @@ public class EnemySpawner : MonoBehaviour
             }
             return;
         }
-        if (currentIndex >= waves.Count)
-        {
-            print(currentIndex);
-            camController.ChangeMode(true);
-            Destroy(gameObject);
-            return;
-        }
         currentTime += Time.deltaTime;
         if (enemyAlive == 0 || currentTime > maxTimeBetweenWaves)
         {
             currentIndex += 1;
+            if (currentIndex >= waves.Count)
+            {
+                camController.ChangeMode(true);
+                Destroy(gameObject);
+                return;
+            }
             StartWave(currentIndex);
             currentTime = 0;
         }
