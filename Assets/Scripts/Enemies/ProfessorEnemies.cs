@@ -39,7 +39,7 @@ public class ProfessorEnemies : Enemy
         {
             if (DistanceFromPlayer() < maxDistanceForAttack)
             {
-                // attack
+                LightAttack();
                 timeBeforeNextAttack = Random.Range(4, 6);
                 state = EnemyState.RandomMove;
                 TargetRandom();

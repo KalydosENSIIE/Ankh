@@ -17,6 +17,8 @@ public class Controller : MonoBehaviour
     private AbilityHandler abilityHandler;
     private void Start()
     {
+        if (!bounds)
+            bounds = GameObject.FindGameObjectWithTag("bounds").GetComponent<BoxCollider2D>();
         abilityHandler = GetComponent<AbilityHandler>();
     }
 

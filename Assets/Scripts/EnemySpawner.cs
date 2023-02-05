@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
 
     private float currentTime;
-    private int currentIndex;
+    private int currentIndex = -1;
     private float enemyAlive = 0;
     private bool started = false;
     private CameraController camController;
@@ -40,9 +40,11 @@ public class EnemySpawner : MonoBehaviour
                 camController.ChangeMode(false);
                 Trigger();
             }
+            return;
         }
         if (currentIndex >= waves.Count)
         {
+            print(currentIndex);
             camController.ChangeMode(true);
             Destroy(gameObject);
             return;
@@ -50,9 +52,9 @@ public class EnemySpawner : MonoBehaviour
         currentTime += Time.deltaTime;
         if (enemyAlive == 0 || currentTime > maxTimeBetweenWaves)
         {
+            currentIndex += 1;
             StartWave(currentIndex);
             currentTime = 0;
-            currentIndex += 1;
         }
     }
 
@@ -66,6 +68,7 @@ public class EnemySpawner : MonoBehaviour
             pos += yRand * (Vector3.up + Vector3.forward / Mathf.Tan(Global.depthSlope / 180 * Mathf.PI));
             Health enemyHealth = Instantiate(enemy, pos, Quaternion.identity).GetComponent<Health>();
             enemyHealth.deathEvent.AddListener(EnemyDeath);
+            enemyAlive += 1;
         }
     }
 

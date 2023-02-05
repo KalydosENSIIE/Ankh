@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     private float timeBeformNextRandomMoveAvailable = 0;
     protected Health health;
     [SerializeField] private List<Loot> loots;
+    [SerializeField] private Vector2 yLimits = new Vector2();
 
     public virtual void Start()
     {
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         health = GetComponent<Health>();
         abilityHandler = GetComponent<AbilityHandler>();
+        cam = Camera.main;
     }
 
     public virtual void Update()
@@ -67,9 +69,8 @@ public class Enemy : MonoBehaviour
             return;
         timeBeformNextRandomMoveAvailable = Random.Range(randomMoveTimeInterval.x, randomMoveTimeInterval.y);
         GetBounds();
-        cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
         target.x = Random.Range(minX, maxX);
-        target.y = Random.Range(minY, maxY);
+        target.y = Random.Range(yLimits.x, yLimits.y);
     }
 
     protected void AlignWithPlayer()
