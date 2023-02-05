@@ -13,7 +13,6 @@ public class Hitbox
 [CreateAssetMenu(fileName = "Attack", menuName = "ScriptableObjects/AttackScriptableObject", order = 1)]
 public class AttackScriptableObject : ScriptableObject
 {
-
     public int damage = 1;
     public float hitStun;
     public float startTime = 0;
@@ -24,4 +23,5 @@ public class AttackScriptableObject : ScriptableObject
     public float knockbackDuration = 0.5f;
     public float blockedKnockback = 0.1f;
     public string animationName = "";
+    public AudioClip sound;
 }

@@ -29,7 +29,6 @@ public class Projectile : MonoBehaviour
         if (!active || collision.collider.tag == sourceTag)
             return;
         active = false;
-
         Health health = collision.collider.GetComponent<Health>();
         if (health) health.Hit(parameters, transform.position.x > collision.collider.transform.position.x);
         Destroy(gameObject);

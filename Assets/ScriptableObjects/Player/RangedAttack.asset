@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d9bd6d0550cd4c40832a36712c2dd8d, type: 3}
-  m_Name: LightAttack
+  m_Name: RangedAttack
   m_EditorClassIdentifier: 
   damage: 1
   hitStun: 0
-  startTime: 0.1
-  endLag: 0.1
+  startTime: 0.3
+  endLag: 0.5
+  cooldown: 2
   canBeBlocked: 1
   knockback: 1
   knockbackDuration: 0.5
   blockedKnockback: 0.1
+  animationName: 
+  sound: {fileID: 8300000, guid: d67b27d56d375504ebdfa5eb40d342c5, type: 3}

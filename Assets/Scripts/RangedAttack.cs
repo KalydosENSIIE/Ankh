@@ -11,6 +11,7 @@ public class RangedAttack : Attack
     public override IEnumerator AttackRoutine(LayerMask enemyLayer) 
     {
         finished = false;
+        SoundsManager.Instance.Attack(parameters.sound);
         yield return new WaitForSeconds(parameters.startTime);
         Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation).GetComponent<Projectile>();
         projectile.Initialize(gameObject, projectileSpawnPoint.right * projectileSpeed, parameters);
