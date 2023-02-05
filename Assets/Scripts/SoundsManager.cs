@@ -7,8 +7,6 @@ public class SoundsManager : MonoBehaviour
     public static SoundsManager Instance{get; private set;}
 
     [SerializeField]
-    private AudioSource attack;
-    [SerializeField]
     private AudioSource gameOver;
 
     void Awake()
@@ -18,12 +16,6 @@ public class SoundsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Attack(AudioClip sound)
-    {
-        attack.clip = sound;
-        attack.Play();
-        Debug.Log("play " + sound.name);
-    }
     public void GameOver()
     {
         gameOver.Play();
