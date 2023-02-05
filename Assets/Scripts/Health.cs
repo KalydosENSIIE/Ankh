@@ -75,7 +75,9 @@ public class Health : MonoBehaviour
         }
         if(healthBar) healthBar.value = (float)currentHealth / maxHealth;
         if (hitStun > 0)
+        {
             anim.SetBool("stunned", true);
+        }
     }
 
     public void Heal(int value)
