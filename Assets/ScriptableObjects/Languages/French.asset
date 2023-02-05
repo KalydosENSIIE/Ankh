@@ -40,3 +40,38 @@ MonoBehaviour:
     value: Retour
   - key: Language
     value: Langue
+  - key: Intro1
+    value: "Les mus\xE9es ont \xE9t\xE9 critiqu\xE9s \xE0 cause de la pr\xE9sence
+      de pi\xE8ces dans leur collection qui ont \xE9t\xE9 vol\xE9es \xE0 leur pays
+      d\u2019origine par des explorateurs, notamment le c\xE9l\xE8bre Mus\xE9e Reuvol
+      \xE0 Paris."
+  - key: Intro2
+    value: "Les critiques exigent que les objets soient rendus aux propri\xE9taires
+      l\xE9gitimes, mais la plupart de mus\xE9es ignorent ces demandes."
+  - key: Intro3
+    value: "R\xE9cemment, le Mus\xE9e a ajout\xE9 un tr\xE9sor \xE9gyptien rare \xE0
+      son exposition, la Cl\xE9 de la Vie Interdite."
+  - key: Intro4
+    value: "Selon la l\xE9gende, cet  nkh a le pouvoir de r\xE9animer des guerriers
+      morts pour d\xE9fendre le pays et son h\xE9ritage."
+  - key: Intro5
+    value: "La l\xE9gende est vraie, et la momie de Pharaon Akoudbaten est r\xE9anim\xE9e
+      dans son sarcophage."
+  - key: Intro6
+    value: "Il ne reculera devant rien dans sa qu\xEAte pour r\xE9cup\xE9rer les
+      tr\xE9sors de son peuple, et les rendre \xE0 sa patrie!"
+  - key: Ending1
+    value: "Bandages en lambeaux (pire qu\u2019avant), Pharaon Akoudbaten a enfin
+      trouv\xE9 la Cl\xE9 de la Vie Interdite et il a utilis\xE9 son pouvoir."
+  - key: Ending2
+    value: "Il a invoqu\xE9 une arm\xE9e de morts qui se sont r\xE9pandus vers les
+      quatres coins du monde, cherchant les mus\xE9es et les collections priv\xE9es
+      pour r\xE9cup\xE9rer les tr\xE9sors \xE9gyptiens."
+  - key: Ending3
+    value: "Une foule d\u2019admirateurs a accueilli le pharaon momifi\xE9 \xE0 l'a\xE9roport
+      international du Caire, et il a \xE9t\xE9 ramen\xE9 vers Gizeh pour rencontrer
+      le pr\xE9sident \xE9gyptien."
+  - key: Ending4
+    value: "Le pharaon a offert les objets anciens qu\u2019il avait r\xE9clam\xE9s,
+      et le peuple \xE9gyptien a form\xE9 une nouvelle connexion forte avec ses racines
+      culturelles."
