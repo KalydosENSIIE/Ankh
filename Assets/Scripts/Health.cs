@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] public UnityEvent damageEvent;
     [SerializeField] public UnityEvent deathEvent;
     [SerializeField] public UnityEvent healEvent;
+    [SerializeField] public UnityEvent disappearEvent;
     [SerializeField] private AbilityHandler abilityHandler;
     [SerializeField] private Controller controller;
     [SerializeField] private Slider healthBar;
@@ -30,7 +31,7 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        if (currentHitStun > 0)
+        if (currentHitStun > 0 && alive)
         {
             currentHitStun -= Time.deltaTime;
             if (currentHitStun <= 0)
@@ -63,6 +64,7 @@ public class Health : MonoBehaviour
         if (currentHealth == 0)
         {
             alive = false;
+            currentHitStun = Mathf.Infinity;
             deathEvent.Invoke();
             StartCoroutine(DeathCoroutine());
         }
@@ -114,6 +116,7 @@ public class Health : MonoBehaviour
     {
         flickering.Flash();
         yield return new WaitForSeconds(flickering.duration);
+        disappearEvent.Invoke();
         Destroy(gameObject);
     }
 }

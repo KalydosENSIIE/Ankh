@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Fader : MonoBehaviour
 {
     [SerializeField] private Image image;
-    [SerializeField] float fadeInTime;
-    [SerializeField] float fadeOutTime;
+    [SerializeField] public float fadeInTime;
+    [SerializeField] public float fadeOutTime;
     public bool transitioning {get; private set;}
     private Coroutine routine;
 
@@ -55,7 +55,7 @@ public class Fader : MonoBehaviour
         }
     }
 
-    public void TransitionToScene(int sceneIndex)
+    public void TransitionToScene(int sceneIndex, float fadeOutDuration = 1)
     {
         if (transitioning)
             return;
@@ -64,11 +64,11 @@ public class Fader : MonoBehaviour
         {
             StopCoroutine(routine);
         }
-        routine = StartCoroutine(TransitionRoutine(sceneIndex));
+        routine = StartCoroutine(TransitionRoutine(sceneIndex, fadeOutDuration));
     }
-    private IEnumerator TransitionRoutine(int sceneIndex)
+    private IEnumerator TransitionRoutine(int sceneIndex, float fadeOutDuration)
     {
-        yield return FadeOutRoutine(fadeOutTime);
+        yield return FadeOutRoutine(fadeOutDuration);
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneIndex);
     }

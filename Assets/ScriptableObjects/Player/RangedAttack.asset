@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: RangedAttack
   m_EditorClassIdentifier: 
   damage: 1
-  hitStun: 0
-  startTime: 0.3
+  hitStun: 1
+  startTime: 0.5
   endLag: 0.5
   cooldown: 2
   canBeBlocked: 1
   knockback: 1
-  knockbackDuration: 0.5
-  blockedKnockback: 0.1
+  knockbackDuration: 1
+  blockedKnockback: 0.2
   animationName: throw
   sound: {fileID: 8300000, guid: d67b27d56d375504ebdfa5eb40d342c5, type: 3}

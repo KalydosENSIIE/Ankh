@@ -22,3 +22,4 @@ MonoBehaviour:
   knockbackDuration: 0.26
   blockedKnockback: 0.1
   animationName: light
+  sound: {fileID: 0}

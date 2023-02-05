@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,5 +48,11 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         fader.TransitionToScene(nextScene);
+    }
+
+    public void PlayerDead()
+    {
+        SoundsManager.Instance.GameOver();
+        fader.TransitionToScene(SceneManager.GetActiveScene().buildIndex, 2);
     }
 }
