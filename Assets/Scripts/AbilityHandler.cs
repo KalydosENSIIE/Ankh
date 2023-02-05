@@ -33,7 +33,7 @@ public class AbilityHandler : MonoBehaviour
         controller = GetComponent<Controller>();
     }
 
-    public void TryUseAttack(int attackIndex)
+    public void TryUseAttack(int attackIndex, int dir = 0)
     {
         if (blocking || (currentAttack && useNextAttack)) return;
         if (health && health.Stunned()) return;
@@ -45,9 +45,9 @@ public class AbilityHandler : MonoBehaviour
             return;
         }
         if (currentAttack && !currentAttack.finished) return;
-        if (!cooldowns[attackIndex].finished) {Debug.Log("OnCooldown"); return;}
+        if (!cooldowns[attackIndex].finished) {return;}
         
-        UseAttack(attacks[attackIndex]);
+        UseAttack(attacks[attackIndex], dir);
         currentAttackIndex = attackIndex;
         cooldowns[currentAttackIndex].Start(currentAttack.parameters.cooldown);
         anim.SetTrigger(attacks[attackIndex].parameters.animationName);
@@ -73,10 +73,19 @@ public class AbilityHandler : MonoBehaviour
         }
     }
 
-    private void UseAttack(Attack attack)
+    private void UseAttack(Attack attack, int dir = 0)
     {
         currentAttack = attack;
-        StartCoroutine(attack.AttackRoutine(enemyLayer, !controller.isFacingRight()));
+        if (dir == -1)
+        {
+            StartCoroutine(attack.AttackRoutine(enemyLayer, false));
+        }
+        else if (dir == 1)
+        {
+            StartCoroutine(attack.AttackRoutine(enemyLayer, true));
+        }
+        else
+            StartCoroutine(attack.AttackRoutine(enemyLayer, !controller.isFacingRight()));
 
     }
 

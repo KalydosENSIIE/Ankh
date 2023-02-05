@@ -12,8 +12,8 @@ public class RangedAttack : Attack
     {
         finished = false;
         yield return new WaitForSeconds(parameters.startTime);
-        Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation).GetComponent<Projectile>();
-        projectile.Initialize(gameObject, projectileSpawnPoint.right * projectileSpeed, parameters);
+        Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
+        projectile.Initialize(gameObject, new Vector3(facingRight ? 1 : -1, 0, 0) * projectileSpeed, parameters);
 
         yield return new WaitForSeconds(parameters.endLag);
         finished = true;

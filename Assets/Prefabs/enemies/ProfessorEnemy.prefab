@@ -215,5 +215,5 @@ MonoBehaviour:
   desiredDistanceFromPlayer: 0.5
   randomMoveTimeInterval: {x: 1, y: 3}
   loots: []
-  yLimits: {x: -4.058741, y: -2.546699}
+  yLimits: {x: -0.59, y: 0.91}
   maxDistanceForAttack: 1.6

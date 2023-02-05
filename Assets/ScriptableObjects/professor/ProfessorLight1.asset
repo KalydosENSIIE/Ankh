@@ -21,4 +21,4 @@ MonoBehaviour:
   knockback: 0.3
   knockbackDuration: 0.26
   blockedKnockback: 0.1
-  animationName: light
+  animationName: throw

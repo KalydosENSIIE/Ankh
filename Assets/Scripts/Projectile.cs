@@ -9,11 +9,16 @@ public class Projectile : MonoBehaviour
     private string sourceTag = "";
     private bool active = true;
     private AttackScriptableObject parameters;
+    Vector3 velocity;
 
 
-    public void SetVelocity(Vector3 velocity)
+    public void SetVelocity(Vector3 value)
     {
-        rigidbody.velocity = velocity;
+        velocity = value;
+    }
+    private void Update()
+    {
+        transform.Translate(velocity * Time.deltaTime, Space.World);
     }
 
     public void Initialize(GameObject source, Vector3 velocity, AttackScriptableObject parameters)
@@ -21,6 +26,7 @@ public class Projectile : MonoBehaviour
         SetVelocity(velocity);
         sourceTag = source.tag;
         this.parameters = parameters;
+        if (velocity.x < 0) transform.Rotate(0, 180, 0);
         Destroy(gameObject, lifeTime);
     }
 

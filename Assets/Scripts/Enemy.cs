@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float desiredDistanceFromPlayer = 0.5f;
     [SerializeField] private Vector2 randomMoveTimeInterval = new Vector2(1, 3);
     private Camera cam;
-    private float minX, minY, maxX, maxY;
+    private float minX, maxX;
     float availableSpaceDistanceCheck = 1;
     public enum EnemyState { TargetPlayer, RandomMove, Idle, AlignWithPlayer }
     protected EnemyState state = EnemyState.RandomMove;
@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
     {
         target.x = transform.position.x;
         target.y = playerTransform.position.y;
+        target.z = playerTransform.position.z;
     }
 
     private void GetBounds()
@@ -84,9 +85,7 @@ public class Enemy : MonoBehaviour
         Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
         Vector3 bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane));
         minX = bottomLeft.x;
-        minY = bottomLeft.y;
         maxX = topRight.x;
-        maxY = topRight.y;
     }
 
     protected float DistanceFromPlayer()
@@ -105,19 +104,19 @@ public class Enemy : MonoBehaviour
     protected void LightAttack()
     {
         RotateTowardPlayer();
-        abilityHandler.TryUseAttack(0);
+        abilityHandler.TryUseAttack(0, playerTransform.position.x > transform.position.x ? 1 : -1);
     }
 
     protected void HeavyAttack()
     {
         RotateTowardPlayer();
-        abilityHandler.TryUseAttack(1);
+        abilityHandler.TryUseAttack(1, playerTransform.position.x > transform.position.x ? 1 : -1);
     }
 
     protected void ThrowProjectile()
     {
         RotateTowardPlayer();
-        abilityHandler.TryUseAttack(2);
+        abilityHandler.TryUseAttack(2, playerTransform.position.x > transform.position.x ? 1 : -1);
     }
 
     public void Loot()
