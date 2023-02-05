@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9bd6d0550cd4c40832a36712c2dd8d, type: 3}
   m_Name: HeavyAttack
   m_EditorClassIdentifier: 
-  damage: 1
-  hitStun: 0
-  startTime: 0.3
-  endLag: 0.5
-  cooldown: 2
+  damage: 3
+  hitStun: 1
+  startTime: 0.4
+  endLag: 1
+  cooldown: 3
   canBeBlocked: 1
-  knockback: 1
+  knockback: 2
   knockbackDuration: 0.5
   blockedKnockback: 0.1
+  animationName: strong
+  sound: {fileID: 0}

@@ -14,9 +14,14 @@ public class RangedAttack : Attack
         if (audioSource && audioSource.clip != null)
             audioSource.Play();
         yield return new WaitForSeconds(parameters.startTime);
-        Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
-        projectile.Initialize(gameObject, new Vector3(facingRight ? 1 : -1, 0, 0) * projectileSpeed, parameters);
+        GameObject obj = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+        Projectile projectile = obj.GetComponent<Projectile>();
+        StrongAttack attack = obj.GetComponent<StrongAttack>();
 
+        if (projectile)
+            projectile.Initialize(gameObject, new Vector3(facingRight ? 1 : -1, 0, 0) * projectileSpeed, parameters);
+        if (attack)
+            attack.Initialize(parameters);
         yield return new WaitForSeconds(parameters.endLag);
         finished = true;
     }

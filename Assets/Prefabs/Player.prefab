@@ -365,7 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - {fileID: 716610557847303049}
-  - {fileID: 1803230591441023037}
+  - {fileID: 6951357717356488661}
   - {fileID: 4958150945238651688}
   - {fileID: 723943448423166117}
   enemyLayer:
@@ -627,8 +627,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5074682584251390657}
-  - component: {fileID: 1803230591441023037}
   - component: {fileID: 1908833151710846744}
+  - component: {fileID: 6951357717356488661}
   m_Layer: 3
   m_Name: HeavyAttack
   m_TagString: Player
@@ -644,32 +644,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5232250624075624223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.97, y: 0, z: 0}
+  m_LocalPosition: {x: 4.867, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3051302282540103998}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1803230591441023037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5232250624075624223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eec69e2e4af7cc4094a3cf2cc350753, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parameters: {fileID: 11400000, guid: a2a6d29239473b6478daea5aa575fc79, type: 2}
-  nextAttack: {fileID: 0}
-  finished: 0
-  audioSource: {fileID: 0}
-  hitboxes:
-  - center: {fileID: 5074682584251390657}
-    radius: 1
 --- !u!82 &1908833151710846744
 AudioSource:
   m_ObjectHideFlags: 0
@@ -766,6 +747,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6951357717356488661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232250624075624223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe312a95570b68499846a8e2a86af4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: a2a6d29239473b6478daea5aa575fc79, type: 2}
+  nextAttack: {fileID: 0}
+  finished: 0
+  audioSource: {fileID: 1908833151710846744}
+  projectilePrefab: {fileID: 3430099408584663709, guid: 9a52607a919285448895769bfffcff1a, type: 3}
+  projectileSpawnPoint: {fileID: 5074682584251390657}
+  projectileSpeed: 15
 --- !u!1 &8786392161087705663
 GameObject:
   m_ObjectHideFlags: 0
