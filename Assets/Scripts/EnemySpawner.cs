@@ -21,10 +21,13 @@ public class EnemySpawner : MonoBehaviour
     private float enemyAlive = 0;
     private bool started = false;
     private CameraController camController;
+    private void Start()
+    {
+        camController = FindObjectOfType<CameraController>();
+    }
     public void Trigger()
     {
         started = true;
-        camController = FindObjectOfType<CameraController>();
     }
 
 
@@ -33,9 +36,17 @@ public class EnemySpawner : MonoBehaviour
         if (!started)
         {
             if (camController.transform.position.x > transform.position.x)
+            {
+                camController.ChangeMode(false);
                 Trigger();
+            }
         }
-        if (currentIndex >= waves.Count) return;
+        if (currentIndex >= waves.Count)
+        {
+            camController.ChangeMode(true);
+            Destroy(gameObject);
+            return;
+        }
         currentTime += Time.deltaTime;
         if (enemyAlive == 0 || currentTime > maxTimeBetweenWaves)
         {
