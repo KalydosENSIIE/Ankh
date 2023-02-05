@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/MainMenu.unity
+    guid: a704bebbdd2d1eb438ac8f5970fb88d4
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: cfdca17e4a9731f408457a7e5392e666
+  - enabled: 1
+    path: Assets/Scenes/TestFlorian.unity
+    guid: 642d5174b664b5a47821d9ea3ae82392
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: a5a6cb8e12a7dfd4b99e6baab9a9a379
   m_configObjects: {}

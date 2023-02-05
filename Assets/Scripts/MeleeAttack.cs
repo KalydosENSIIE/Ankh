@@ -10,7 +10,8 @@ public class MeleeAttack : Attack
     {
         finished = false;
         yield return new WaitForSeconds(parameters.startTime);
-        audioSource?.Play();
+        if (audioSource && audioSource.clip != null)
+            audioSource.Play();
         float currentTime = parameters.startTime;
         for (int i = 0; i < hitboxes.Count; i++)
         {

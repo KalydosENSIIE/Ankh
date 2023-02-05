@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 976892011}
+  nextSceneIndex: 2
 --- !u!114 &38207402
 MonoBehaviour:
   m_ObjectHideFlags: 0
