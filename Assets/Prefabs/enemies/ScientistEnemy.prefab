@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredDistanceFromPlayer: 0.5
-  randomMoveTimeInterval: {x: 1, y: 3}
+  randomMoveTimeInterval: {x: 0.5, y: 1.5}
   loots:
   - item: {fileID: 5327097237610143003, guid: 723d28cbb3f5c4d4ab1879e537cd87b7, type: 3}
     probability: 0.2
