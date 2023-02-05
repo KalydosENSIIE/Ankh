@@ -47,7 +47,7 @@ public class ResearcherEnemy : Enemy
         {
             if (DistanceFromPlayer() < meleeAttackDistance)
             {
-                LightAttack();
+                ThrowProjectile(); // will be replaced by light attack
                 TargetRandom();
                 tryAttacking = false;
                 timeBeforeNextAttack = Random.Range(3, 5);

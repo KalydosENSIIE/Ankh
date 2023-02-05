@@ -21,5 +21,5 @@ MonoBehaviour:
   knockback: 1
   knockbackDuration: 0.5
   blockedKnockback: 0.1
-  animationName: 
+  animationName: throw
   sound: {fileID: 8300000, guid: d67b27d56d375504ebdfa5eb40d342c5, type: 3}
