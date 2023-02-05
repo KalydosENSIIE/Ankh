@@ -76,21 +76,33 @@ public class AbilityHandler : MonoBehaviour
     private void UseAttack(Attack attack)
     {
         currentAttack = attack;
-        StartCoroutine(attack.AttackRoutine(enemyLayer, controller.isFacingRight()));
+        StartCoroutine(attack.AttackRoutine(enemyLayer, !controller.isFacingRight()));
 
     }
 
     public void Block(bool enabled = true)
     {
+        if (!enabled)
+            blocking = false;
         if (blocking || health.Stunned()) return;
         if (currentAttack && !currentAttack.finished) return;
         blocking = enabled;
+        anim.SetBool("block", enabled);
     }
 
 
     public bool isBlocking()
     {
         return blocking;
+    }
+
+    public bool isAttacking()
+    {
+        if (currentAttack && !currentAttack.finished)
+        {
+            return true;
+        }
+        return false;
     }
 
     /* private IEnumerator AttackRoutine(AttackScriptableObject attack) 
@@ -131,6 +143,7 @@ public class AbilityHandler : MonoBehaviour
             currentAttack = null;
         }
         blocking = false;
+        anim.SetBool("block", false);
     }
 }
 

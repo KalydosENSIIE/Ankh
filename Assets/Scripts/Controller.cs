@@ -14,17 +14,24 @@ public class Controller : MonoBehaviour
     public float ySpeed = 1;
     [SerializeField] private Collider col;
     private Coroutine knockbackRoutine;
+    private AbilityHandler abilityHandler;
+    private void Start()
+    {
+        abilityHandler = GetComponent<AbilityHandler>();
+    }
 
 
     public void Move(Vector2 moveDirection)
     {
+        if (moveDirection.magnitude == 0)
+        {
+            anim.SetBool("walk", false);
+        }
+        if (abilityHandler.isBlocking() || abilityHandler.isAttacking())
+            return;
         if (moveDirection.magnitude > 0)
         {
             anim.SetBool("walk", true);
-        }
-        else
-        {
-            anim.SetBool("walk", false);
         }
         if (health.Stunned()) return;
         if (moveDirection.x < 0) facingRight = false;
@@ -104,7 +111,7 @@ public class Controller : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             if (currentTime > duration) currentTime = duration;
-            transform.Translate(distance * new Vector3(1,0,0) * (knockbackedRight ? -1 : 1) * (knockbackCurve.Evaluate(currentTime) - currentDistance), Space.World);
+            transform.Translate(distance * new Vector3(1,0,0) * (knockbackedRight ? 1 : -1) * (knockbackCurve.Evaluate(currentTime) - currentDistance), Space.World);
             currentDistance = knockbackCurve.Evaluate(currentTime);
             yield return null;
         }

@@ -44,6 +44,7 @@ public class Health : MonoBehaviour
 
     public void Hit(AttackScriptableObject attack, bool fromRight = false)
     {
+        print(fromRight);
         if (abilityHandler.isBlocking() && fromRight == controller.isFacingRight() && attack.canBeBlocked)
         {
             controller.Knockback(attack.blockedKnockback, attack.knockbackDuration, !fromRight);

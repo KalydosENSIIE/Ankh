@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 316742696}
   - component: {fileID: 316742695}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1057,6 +1057,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1475511381200338021, guid: 68339f0b90e12e74b8d1847bfca1af49, type: 3}
+      propertyPath: bounds
+      value: 
+      objectReference: {fileID: 1635360183}
     - target: {fileID: 4477271318417701608, guid: 68339f0b90e12e74b8d1847bfca1af49, type: 3}
       propertyPath: m_Name
       value: GuardEnemy
