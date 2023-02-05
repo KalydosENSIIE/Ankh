@@ -33,3 +33,16 @@ MonoBehaviour:
   - key: Intro6
     value: He will stop at nothing to reclaim the treasures of his people, and return
       them to his homeland!
+  - key: Ending1
+    value: Bruised and battered, the Pharaoh Akoudbaten finally found the Key to
+      Forbidden Life, and used its power.
+  - key: Ending2
+    value: He summoned an undead army to scour the world, raiding museums and private
+      collections to reclaim the stolen Egyptian treasures.
+  - key: Ending3
+    value: The Pharaoh received a warm welcome at Cairo International Airport, and
+      was brought immediately to Giza to meet with the President of Egypt.
+  - key: Ending4
+    value: The crowd cheered as the Pharaoh unveiled the treasures of ancient Egypt
+      that he had collected, and the people of Egypt have never felt closer to their
+      cultural roots.
