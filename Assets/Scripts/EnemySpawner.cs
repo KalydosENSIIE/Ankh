@@ -15,19 +15,27 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float maxTimeBetweenWaves;
 
 
+
     private float currentTime;
     private int currentIndex;
     private float enemyAlive = 0;
     private bool started = false;
+    private CameraController camController;
     public void Trigger()
     {
         started = true;
+        camController = FindObjectOfType<CameraController>();
     }
 
 
     private void Update()
     {
-        if (!started || currentIndex >= waves.Count) return;
+        if (!started)
+        {
+            if (camController.transform.position.x > transform.position.x)
+                Trigger();
+        }
+        if (currentIndex >= waves.Count) return;
         currentTime += Time.deltaTime;
         if (enemyAlive == 0 || currentTime > maxTimeBetweenWaves)
         {
