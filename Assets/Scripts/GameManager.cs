@@ -25,16 +25,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         fader.FadeIn();
-        pauseAction.action.performed += context => TogglePause();
+        pauseAction.action.performed += TogglePause;
         pauseAction.action.Enable();
     }
 
-    public void Resume()
-    {
-        TogglePause();
-    }
-
-    public void TogglePause()
+    public void TogglePause(InputAction.CallbackContext context)
     {
         Time.timeScale = 1 - Time.timeScale;
         if (Time.timeScale <= 0)
@@ -61,6 +56,6 @@ public class GameManager : MonoBehaviour
 
     void OnDestroy()
     {
-        pauseAction.action.performed -= context => TogglePause();
+        pauseAction.action.performed -= TogglePause;
     }
 }
