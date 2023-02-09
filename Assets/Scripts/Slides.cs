@@ -19,7 +19,7 @@ public class Slides : MonoBehaviour
 
     public void Next()
     {
-        if(!fader.transitioning)
+        if(!fader.fading)
         {
             StartCoroutine(Transition());
         }

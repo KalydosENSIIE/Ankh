@@ -8,7 +8,8 @@ public class Fader : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] public float fadeInTime;
     [SerializeField] public float fadeOutTime;
-    public bool transitioning {get; private set;}
+    public bool transitioning { get; private set; }
+    public bool fading { get; private set; }
     private Coroutine routine;
 
     public void FadeOut()
@@ -33,6 +34,7 @@ public class Fader : MonoBehaviour
     }
     private IEnumerator FadeOutRoutine(float time)
     {
+        fading = true;
         image.color = Color.clear;
         while (image.color.a < 1)
         {
@@ -41,10 +43,12 @@ public class Fader : MonoBehaviour
             image.color = imageColor;
             yield return null;
         }
+        fading = false;
     }
 
     private IEnumerator FadeInRoutine(float time)
     {
+        fading = true;
         image.color = Color.black;
         while (image.color.a > 0)
         {
@@ -53,6 +57,7 @@ public class Fader : MonoBehaviour
             image.color = imageColor;
             yield return null;
         }
+        fading = false;
     }
 
     public void TransitionToScene(int sceneIndex, float fadeOutDuration = 1)
