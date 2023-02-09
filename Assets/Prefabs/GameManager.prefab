@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseAction: {fileID: -8511566695495403721, guid: a5df314b60fcc174fa4cf07df13904de, type: 3}
   pauseMenu: {fileID: 2756798521973575008}
+  backButton: {fileID: 3301414741427736530}
   fader: {fileID: 0}
   mainMenuSceneIndex: 0
   nextScene: 0
@@ -466,6 +467,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7058355149536406316, guid: ba5f1a3dc2fee234cab4f67bd5383fc8, type: 3}
   m_PrefabInstance: {fileID: 5486698999885030652}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3301414741427736530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7058355149536406318, guid: ba5f1a3dc2fee234cab4f67bd5383fc8, type: 3}
+  m_PrefabInstance: {fileID: 5486698999885030652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301414741427736528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5251938925825091103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 343972365102383843, guid: ba5f1a3dc2fee234cab4f67bd5383fc8, type: 3}

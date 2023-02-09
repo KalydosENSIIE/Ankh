@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputActionReference pauseAction;
 
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Button backButton;
     [SerializeField] private Fader fader;
     [SerializeField] private int mainMenuSceneIndex;
     [SerializeField] private int nextScene;
@@ -25,17 +27,28 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         fader.FadeIn();
-        pauseAction.action.performed += TogglePause;
+        pauseAction.action.performed += context => TogglePause();
         pauseAction.action.Enable();
     }
 
-    public void TogglePause(InputAction.CallbackContext context)
+    public void Resume()
     {
+        TogglePause();
+    }
+
+    public void TogglePause()
+    {
+        if (!pauseMenu)
+            return;
         Time.timeScale = 1 - Time.timeScale;
         if (Time.timeScale <= 0)
             pauseMenu.SetActive(true);
         else
+        {
+            if (backButton.gameObject.activeSelf)
+                backButton.onClick.Invoke();
             pauseMenu.SetActive(false);
+        }
     }
 
     public void ReturnToMainMenu()
@@ -56,6 +69,6 @@ public class GameManager : MonoBehaviour
 
     void OnDestroy()
     {
-        pauseAction.action.performed -= TogglePause;
+        pauseAction.action.performed -= context => TogglePause();
     }
 }
