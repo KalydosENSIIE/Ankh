@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
     public void Loot()
     {
         float t = 0;
-        float r = Random.Range(0, 1);
+        float r = Random.Range(0, 1.0f);
         foreach (Loot loot in loots)
         {
             t += loot.probability;
