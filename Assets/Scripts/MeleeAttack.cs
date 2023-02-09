@@ -13,29 +13,26 @@ public class MeleeAttack : Attack
         yield return new WaitForSeconds(parameters.startTime);
         if (audioSource && audioSource.clip != null)
             audioSource.Play();
-        float currentTime = parameters.startTime;
-        for (int i = 0; i < hitboxes.Count; i++)
+
+        HashSet<Collider> hitColliders = new HashSet<Collider>();
+        foreach (Hitbox hitbox in hitboxes)
         {
-           
-            HashSet<Collider> hitColliders = new HashSet<Collider>();
-            foreach (Hitbox hitbox in hitboxes)
+            Collider[] colliders = Physics.OverlapSphere(hitbox.center.position, hitbox.radius, enemyLayer);
+            foreach (Collider collider in colliders)
             {
-                Collider[] colliders = Physics.OverlapSphere(hitbox.center.position, hitbox.radius, enemyLayer);
-                foreach (Collider collider in colliders)
+                if (!hitColliders.Contains(collider))
                 {
-                    if (!hitColliders.Contains(collider))
-                    {
-                        hitColliders.Add(collider);
-                    }
-                }
-                foreach(Collider collider in hitColliders)
-                {
-                    Health health = collider.GetComponent<Health>();
-                    if (health) health.Hit(parameters, !facingRight);
+                    hitColliders.Add(collider);
                 }
             }
         }
-        if (parameters.effect)
+        foreach(Collider collider in hitColliders)
+        {
+            Health health = collider.GetComponent<Health>();
+            if (health) health.Hit(parameters, !facingRight);
+        }
+        
+        if (hitColliders.Count > 0 && parameters.effect)
         {
             Vector3 pos = transform.position;
             if (effectPosition)
