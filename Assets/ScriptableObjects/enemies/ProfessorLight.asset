@@ -24,4 +24,4 @@ MonoBehaviour:
   animationName: light
   sound: {fileID: 0}
   effect: {fileID: 9201080670702154310, guid: 3f2e8ae2cfedf8044af69e67f6774eb0, type: 3}
-  effectScale: 0.3
+  effectScale: 0.6
