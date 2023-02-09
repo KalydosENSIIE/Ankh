@@ -22,6 +22,7 @@ public class RangedAttack : Attack
             projectile.Initialize(gameObject, new Vector3(facingRight ? 1 : -1, 0, 0) * projectileSpeed, parameters);
         if (attack)
             attack.Initialize(parameters);
+        
         yield return new WaitForSeconds(parameters.endLag);
         finished = true;
     }

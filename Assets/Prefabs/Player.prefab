@@ -52,6 +52,7 @@ MonoBehaviour:
   hitboxes:
   - center: {fileID: 2001091781}
     radius: 0.5
+  effectPosition: {fileID: 2001091781}
 --- !u!82 &8966951899860287357
 AudioSource:
   m_ObjectHideFlags: 0
@@ -847,6 +848,7 @@ MonoBehaviour:
   hitboxes:
   - center: {fileID: 7821897453556990910}
     radius: 0.5
+  effectPosition: {fileID: 7821897453556990910}
 --- !u!1 &5232250624075624223
 GameObject:
   m_ObjectHideFlags: 0

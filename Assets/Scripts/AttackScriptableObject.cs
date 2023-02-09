@@ -24,4 +24,6 @@ public class AttackScriptableObject : ScriptableObject
     public float blockedKnockback = 0.1f;
     public string animationName = "";
     public AudioClip sound;
+    public GameObject effect;
+    public float effectScale = 1;
 }

@@ -37,6 +37,13 @@ public class Projectile : MonoBehaviour
         active = false;
         Health health = collision.collider.GetComponent<Health>();
         if (health) health.Hit(parameters, transform.position.x > collision.collider.transform.position.x);
+        if (parameters.effect)
+        {
+            GameObject effect = Instantiate(parameters.effect, transform.position, Quaternion.identity);
+            if (transform.position.x > collision.collider.transform.position.x)
+                effect.transform.Rotate(0, 180, 0);
+            effect.transform.localScale = parameters.effectScale * Vector3.one;
+        }
         Destroy(gameObject);
     }
 

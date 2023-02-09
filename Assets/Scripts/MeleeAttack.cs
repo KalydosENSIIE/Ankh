@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeleeAttack : Attack
 {
     public List<Hitbox> hitboxes;
+    public Transform effectPosition;
 
     public override IEnumerator AttackRoutine(LayerMask enemyLayer, bool facingRight) 
     {
@@ -33,6 +34,18 @@ public class MeleeAttack : Attack
                     if (health) health.Hit(parameters, !facingRight);
                 }
             }
+        }
+        if (parameters.effect)
+        {
+            Vector3 pos = transform.position;
+            if (effectPosition)
+            {
+                pos = effectPosition.position;
+            }
+            GameObject effect = Instantiate(parameters.effect, pos, Quaternion.identity);
+            if (!facingRight)
+                effect.transform.Rotate(0, 180, 0);
+            effect.transform.localScale = parameters.effectScale * Vector3.one;
         }
         yield return new WaitForSeconds(parameters.endLag);
         finished = true;
