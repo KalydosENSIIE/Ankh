@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: parameters
       value: 
       objectReference: {fileID: 11400000, guid: 6426bd2f324819945a329d6d5b24ba88, type: 2}
+    - target: {fileID: 716610557847303049, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+      propertyPath: effectPosition
+      value: 
+      objectReference: {fileID: 7125553164525659617}
     - target: {fileID: 3051302282540103994, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
       propertyPath: m_Name
       value: ProfessorEnemy
@@ -247,3 +251,8 @@ MonoBehaviour:
     probability: 0.33
   yLimits: {x: -0.59, y: 0.91}
   maxDistanceForAttack: 1.6
+--- !u!4 &7125553164525659617 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2001091781, guid: b8a9458f551816e46b2f0e851502ea52, type: 3}
+  m_PrefabInstance: {fileID: 7125553165217323300}
+  m_PrefabAsset: {fileID: 0}
